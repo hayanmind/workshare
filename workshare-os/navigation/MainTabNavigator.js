@@ -3,7 +3,7 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
+import ActionsScreen from '../screens/ActionsScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
@@ -12,28 +12,33 @@ const config = Platform.select({
   default: {},
 });
 
-const HomeStack = createStackNavigator(
+const ActionsStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    Actions: ActionsScreen,
   },
   config
 );
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+ActionsStack.navigationOptions = {
+  tabBarLabel: 'Actions',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
+      // name={
+      //   Platform.OS === 'ios'
+      //     ? `ios-information-circle${focused ? '' : '-outline'}`
+      //     : 'md-information-circle'
+      // }
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? `ios-stopwatch`
+          : 'md-clock'
       }
     />
   ),
 };
 
-HomeStack.path = '';
+ActionsStack.path = '';
 
 const LinksStack = createStackNavigator(
   {
@@ -68,7 +73,7 @@ SettingsStack.navigationOptions = {
 SettingsStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
-  HomeStack,
+  ActionsStack: ActionsStack,
   LinksStack,
   SettingsStack,
 });
