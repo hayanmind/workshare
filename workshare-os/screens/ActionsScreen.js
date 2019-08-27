@@ -70,7 +70,7 @@ export default function ActionsScreen() {
 }
 
 ActionsScreen.navigationOptions = {
-  header: null,
+  title: 'Actions',
 };
 
 function DevelopmentModeNotice() {
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   contentContainer: {
-    paddingTop: 30,
+    paddingTop: 10,
   },
   welcomeContainer: {
     alignItems: 'center',
