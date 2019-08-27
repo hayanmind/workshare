@@ -12,7 +12,7 @@ import {
 
 import { MonoText } from '../components/StyledText';
 
-export default function HomeScreen() {
+export default function ActionsScreen() {
   return (
     <View style={styles.container}>
       <ScrollView
@@ -69,8 +69,8 @@ export default function HomeScreen() {
   );
 }
 
-HomeScreen.navigationOptions = {
-  header: null,
+ActionsScreen.navigationOptions = {
+  title: 'Actions',
 };
 
 function DevelopmentModeNotice() {
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   contentContainer: {
-    paddingTop: 30,
+    paddingTop: 10,
   },
   welcomeContainer: {
     alignItems: 'center',
