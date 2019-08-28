@@ -12,7 +12,7 @@ import {
 
 import { MonoText } from '../components/StyledText';
 
-export default function ActionsScreen() {
+const ActionsScreen = () => {
   return (
     <View style={styles.container}>
       <ScrollView
@@ -196,3 +196,5 @@ const styles = StyleSheet.create({
     color: '#2e78b7',
   },
 });
+
+export default ActionsScreen;

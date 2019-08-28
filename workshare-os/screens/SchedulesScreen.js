@@ -1,8 +1,8 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, Button, StyleSheet } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 
-export default function SchedulesScreen() {
+  const SchedulesScreen = ({navigation}) => {
   return (
     <ScrollView style={styles.container}>
       {/**
@@ -10,6 +10,7 @@ export default function SchedulesScreen() {
        * we just wanted to provide you with some helpful links.
        */}
       <ExpoLinksView />
+      <Button title={'To a Schedule'} onPress={() => navigation.navigate('Schedule')}/>
     </ScrollView>
   );
 }
@@ -25,3 +26,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
+
+export default SchedulesScreen;

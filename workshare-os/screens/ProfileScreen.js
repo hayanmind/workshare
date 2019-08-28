@@ -1,7 +1,7 @@
 import React from 'react';
 import { ExpoConfigView } from '@expo/samples';
 
-export default function ProfileScreen() {
+const ProfileScreen = () => {
   /**
    * Go ahead and delete ExpoConfigView and replace it with your content;
    * we just wanted to give you a quick view of your config.
@@ -12,3 +12,5 @@ export default function ProfileScreen() {
 ProfileScreen.navigationOptions = {
   title: 'Profile',
 };
+
+export default ProfileScreen;
