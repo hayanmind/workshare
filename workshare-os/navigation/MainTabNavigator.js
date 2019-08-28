@@ -6,6 +6,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import ActionsScreen from '../screens/ActionsScreen';
 import SchedulesScreen from '../screens/SchedulesScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import MemberScheduleScreen from '../screens/MemberScheduleScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -38,6 +39,7 @@ ActionsStack.path = '';
 const SchedulesStack = createStackNavigator(
   {
     Schedules: SchedulesScreen,
+    Schedule: MemberScheduleScreen,
   },
   config
 );
