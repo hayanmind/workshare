@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, SafeAreaView, StatusBar, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Text, TextInput, Image, Button, StyleSheet } from 'react-native';
+import { View, SafeAreaView, StatusBar, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Text, Image, StyleSheet } from 'react-native';
 import LoginFormInput from '../components/LoginFormInput';
 import colorConstant from '../constants/Colors';
 
@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   logo: {
-    width: 200,
-    height: 200,
+    width: 140,
+    height: 140,
   },
   title: {
     color: '#ffffff',
