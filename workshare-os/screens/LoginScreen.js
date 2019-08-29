@@ -1,23 +1,50 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, SafeAreaView, StatusBar, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Text, TextInput, Image, Button, StyleSheet } from 'react-native';
+import LoginFormInput from '../components/LoginFormInput';
+import colorConstant from '../constants/Colors';
 
-const LoginScreen = ({navigation}) => {
-
+const LoginScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text>Hello I'm login</Text>
-      <Button title="Login" onPress={() => navigation.navigate('Main')}/>
-      <Button title="Register" onPress={() => navigation.navigate('Register')}/>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="light-content"/>
+      <KeyboardAvoidingView behavior="padding" style={styles.container}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={styles.container}>
+          <View style={styles.container}>
+            <View style={styles.logoContainer}>
+              <Image 
+                style={styles.logo}
+                source={require('../assets/images/LOGO.png')}
+              />
+              <Text style={styles.title}>Share your working hours and status with colleagues.</Text>
+            </View>
+            <LoginFormInput />
+          </View>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: colorConstant.mainColor,
+  },
+  logoContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#fff',
+    flexGrow: 1,
+  },
+  logo: {
+    width: 200,
+    height: 200,
+  },
+  title: {
+    color: '#ffffff',
+    marginTop: 10,
+    width: 200,
+    textAlign: 'center',
+    opacity: 0.7 ,
   },
 });
 
