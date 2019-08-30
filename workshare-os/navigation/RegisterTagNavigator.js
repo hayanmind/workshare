@@ -15,7 +15,12 @@ const UserStack = createStackNavigator(
   {
     User: UserRegisterScreen,
   },
-  config
+  {
+    defaultNavigationOptions: {
+      header: null
+    }
+  },
+  config,
 );
 
 UserStack.navigationOptions = {
@@ -28,7 +33,12 @@ const CompanyStack = createStackNavigator(
   {
     Company: CompanyRegisterScreen,
   },
-  config
+  {
+    defaultNavigationOptions: {
+      header: null
+    }
+  },
+  config,
 );
 
 CompanyStack.navigationOptions = {
@@ -40,10 +50,11 @@ CompanyStack.path = '';
 const tabNavigator = createMaterialTopTabNavigator({
   UserStack: UserStack,
   CompanyStack: CompanyStack,
-}, {
+},{
   tabBarOptions: {
     style: {
       backgroundColor: constantColor.mainColor,
+      paddingTop: 20,
     },
   },
 });
