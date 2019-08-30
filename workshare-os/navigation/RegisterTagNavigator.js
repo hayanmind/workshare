@@ -1,0 +1,53 @@
+import React from 'react';
+import { Platform } from 'react-native';
+import { createStackNavigator, createMaterialTopTabNavigator } from 'react-navigation';
+
+import UserRegisterScreen from '../screens/UserRegisterScreen';
+import CompanyRegisterScreen from '../screens/CompanyRegisterScreen';
+import constantColor from '../constants/Colors';
+
+const config = Platform.select({
+  web: { headerMode: 'screen' },
+  default: {},
+});
+
+const UserStack = createStackNavigator(
+  {
+    User: UserRegisterScreen,
+  },
+  config
+);
+
+UserStack.navigationOptions = {
+  tabBarLabel: 'Person',
+};
+
+UserStack.path = '';
+
+const CompanyStack = createStackNavigator(
+  {
+    Company: CompanyRegisterScreen,
+  },
+  config
+);
+
+CompanyStack.navigationOptions = {
+  tabBarLabel: 'Company',
+};
+
+CompanyStack.path = '';
+
+const tabNavigator = createMaterialTopTabNavigator({
+  UserStack: UserStack,
+  CompanyStack: CompanyStack,
+}, {
+  tabBarOptions: {
+    style: {
+      backgroundColor: constantColor.mainColor,
+    },
+  },
+});
+
+tabNavigator.path = '';
+
+export default tabNavigator;
