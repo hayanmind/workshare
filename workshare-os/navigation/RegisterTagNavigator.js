@@ -36,7 +36,7 @@ const CompanyStack = createStackNavigator(
   {
     defaultNavigationOptions: {
       header: null
-    }
+    },
   },
   config,
 );
@@ -50,14 +50,18 @@ CompanyStack.path = '';
 const tabNavigator = createMaterialTopTabNavigator({
   UserStack: UserStack,
   CompanyStack: CompanyStack,
-},{
+},
+  {
   tabBarOptions: {
     style: {
       backgroundColor: constantColor.mainColor,
-      paddingTop: 25,
     },
-  },
-});
+    indicatorStyle: {
+      borderBottomColor: '#ffffff',
+      borderBottomWidth: 2,
+    },
+  }}
+);
 
 tabNavigator.path = '';
 

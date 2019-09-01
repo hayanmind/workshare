@@ -1,5 +1,5 @@
 import React from 'react';
-import { Ionicons, AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 import Colors from '../constants/Colors';
 
