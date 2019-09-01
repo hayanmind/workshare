@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, SafeAreaView, StatusBar, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Text, TextInput, StyleSheet } from 'react-native';
+import { View, SafeAreaView, StatusBar, Platform, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Text, TextInput, StyleSheet } from 'react-native';
 import colorConstant from '../constants/Colors';
 import styleConst from '../constants/Layout';
 import ButtonCustom from '../components/ButtonCustom';
@@ -13,7 +13,7 @@ const UserRegisterScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content"/>
+      <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"}/>
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={styles.container}>
           <View style={styles.viewContainer}>
@@ -23,7 +23,7 @@ const UserRegisterScreen = ({navigation}) => {
               placeholder="example@domain.com"
               placeholderTextColor= "rgba(255, 255, 255, 0.5)"  
               returnKeyType="next"
-              onSubmitEditing={() => this.passwordInput.focus()}
+              onSubmitEditing={() => this.userPasswordInput.focus()}
               keyboardType="email-address"
               autoCapitalize="none"
               autoCorrect={false}
@@ -34,8 +34,8 @@ const UserRegisterScreen = ({navigation}) => {
               placeholderTextColor= "rgba(255, 255, 255, 0.5)"
               returnKeyType="next"
               secureTextEntry
-              onSubmitEditing={() => this.passwordInputAgain.focus()}
-              ref={(input) => this.passwordInput = input}
+              onSubmitEditing={() => this.userPasswordInputAgain.focus()}
+              ref={(input) => this.userPasswordInput = input}
               style={styleConst.inputTextField}
             />
             <Text style={styleConst.inputTextFieldLabel}>Password again:</Text>
@@ -45,7 +45,7 @@ const UserRegisterScreen = ({navigation}) => {
               returnKeyType="go"
               secureTextEntry
               onSubmitEditing={validateRegister}
-              ref={(input) => this.passwordInputAgain = input}
+              ref={(input) => this.userPasswordInputAgain = input}
               style={styleConst.inputTextField}
             />
             <ButtonCustom style="register" onPress={validateRegister}/>
