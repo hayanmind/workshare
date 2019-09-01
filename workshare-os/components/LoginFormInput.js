@@ -1,13 +1,21 @@
 import React from 'react';
-import { View, TextInput, TouchableOpacity, Text, KeyboardAvoidingView, Button, StyleSheet } from 'react-native';
+import { View, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { withNavigation } from 'react-navigation';
+import styleConst from '../constants/Layout';
 
 const LoginFormInput  = ({ navigation }) => {
+
+  // function name is more suitable when real login function is on
+  const validateLogin = () => {
+    navigation.navigate('Main')
+  }
+
   return (
     <View style={styles.container}>
+      <Text style={styleConst.inputTextFieldLabel}>Email address:</Text>
       <TextInput 
-        style={styles.textInput}
-        placeholder="e-mail address"
+        style={styleConst.inputTextField}
+        placeholder="example@domain.com"
         placeholderTextColor= "rgba(255, 255, 255, 0.5)"  
         returnKeyType="next"
         onSubmitEditing={() => this.passwordInput.focus()}
@@ -15,16 +23,17 @@ const LoginFormInput  = ({ navigation }) => {
         autoCapitalize="none"
         autoCorrect={false}
       />
+      <Text style={styleConst.inputTextFieldLabel}>Password:</Text>
       <TextInput 
-        style={styles.textInput}
-        placeholder="password"
+        style={styleConst.inputTextField}
+        placeholder="********"
         placeholderTextColor= "rgba(255, 255, 255, 0.5)"
         returnKeyType="go"
         secureTextEntry
-        onSubmitEditing={() => navigation.navigate('Main')}
+        onSubmitEditing={validateLogin}
         ref={(input) => this.passwordInput = input}
         />
-      <TouchableOpacity style={styles.loginButtonContainer} onPress={() => navigation.navigate('Main')}>
+      <TouchableOpacity style={styles.loginButtonContainer} onPress={validateLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.registerButtonContainer} onPress={() => navigation.navigate('Register')}>
@@ -38,13 +47,6 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
   },
-  textInput: {
-    height: 40,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-    color: '#ffffff',
-    backgroundColor: 'rgba(255, 255, 255, 0.3)'
-  },
   loginButtonContainer: {
     backgroundColor: '#2ecc71',
     paddingVertical: 15,
@@ -56,6 +58,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   buttonText: {
+    fontWeight: '700',
     textAlign: 'center',
     color: '#fff',
   }
