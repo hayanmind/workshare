@@ -54,7 +54,7 @@ const tabNavigator = createMaterialTopTabNavigator({
   tabBarOptions: {
     style: {
       backgroundColor: constantColor.mainColor,
-      paddingTop: 20,
+      paddingTop: 25,
     },
   },
 });
