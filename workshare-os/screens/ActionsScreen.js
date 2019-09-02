@@ -1,33 +1,43 @@
-import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import {
-  Image,
   Platform,
-  ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
 
-import { MonoText } from '../components/StyledText';
+import HookButton from '../components/HookButton';
+import constantColor from '../constants/Colors';
 
 const ActionsScreen = () => {
+
   return (
     <View style={styles.container}>
-
-    
-
+      {/* <Button title={(isJa)? "clock in" : "clock out"} onPress={setHookState}/> */}
+      <View style={styles.clockInButtonContainer}>
+        <HookButton />
+      </View>
+      <View style={styles.breakLeaveButtonContainer}>
+        <View style={styles.breakButton}>
+          <HookButton />
+        </View>
+        <View style={styles.leaveButton}>
+          <HookButton />
+        </View>
+      </View>
+      <View style={styles.barChartContainer}>
+        <HookButton />
+      </View>
       <View style={styles.tabBarInfoContainer}>
         <Text style={styles.tabBarInfoText}>
-          This is a tab bar. You can edit it in:
+          Day: 
         </Text>
-        <View
-          style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-          <MonoText style={styles.codeHighlightText}>
-            navigation/MainTabNavigator.js
-          </MonoText>
-        </View>
+        <Text style={styles.tabBarInfoText}>
+          Break: 
+        </Text>
+        <Text style={styles.tabBarInfoText}>
+          Week: 
+        </Text>
       </View>
     </View>
   );
@@ -35,6 +45,12 @@ const ActionsScreen = () => {
 
 ActionsScreen.navigationOptions = {
   title: 'Actions',
+  headerStyle: {
+    backgroundColor: constantColor.mainColor,
+  },
+  headerTitleStyle: {
+    color: '#fff',
+  },
 };
 
 const styles = StyleSheet.create({
@@ -42,19 +58,35 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
+  clockInButtonContainer: {
+    flex: 3,
+    paddingVertical: 5,
+    paddingHorizontal: 5,
   },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
+  breakLeaveButtonContainer: {
+    flex: 3,
+    flexDirection: 'row',
+  },
+  breakButton: {
+    flex: 1,
+    paddingLeft: 5,
+    paddingRight: 2.5,
+  },
+  leaveButton: {
+    flex: 1,
+    paddingRight: 5,
+    paddingLeft: 2.5,
+  },
+  barChartContainer: {
+    flex: 3,
+    paddingVertical: 5,
+    paddingHorizontal: 5,
   },
   tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 10,
     ...Platform.select({
       ios: {
         shadowColor: 'black',
@@ -67,16 +99,12 @@ const styles = StyleSheet.create({
       },
     }),
     alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
+    backgroundColor: constantColor.registerColor,
   },
   tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
+    fontSize: 14,
+    color: '#fff',
     textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
   },
 });
 

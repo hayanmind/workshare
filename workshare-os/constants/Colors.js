@@ -5,6 +5,7 @@ export default {
   mainColor: '#8e44ad',
   loginColor: '#2ecc71',
   logoutColor: '#e74c3c',
+  registerColor: '#3498db',
   tabIconDefault: '#ccc',
   tabIconSelected: tintColor,
   tabBar: '#fefefe',
