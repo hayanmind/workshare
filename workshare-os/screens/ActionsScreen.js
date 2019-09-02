@@ -13,7 +13,6 @@ const ActionsScreen = () => {
 
   return (
     <View style={styles.container}>
-      {/* <Button title={(isJa)? "clock in" : "clock out"} onPress={setHookState}/> */}
       <View style={styles.clockInButtonContainer}>
         <HookButton />
       </View>

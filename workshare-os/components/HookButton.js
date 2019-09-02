@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Text, View, StyleSheet, TouchableHighlight } from 'react-native';
+import { Text, View, StyleSheet, TouchableHighlight } from 'react-native';
 import constantColor from '../constants/Colors';
 
 const HookButton = () => {
@@ -11,10 +11,9 @@ const HookButton = () => {
   };
 
   return(
-    // <Button title={(isJa)? "clock in" : "clock out"} onPress={setHookState}/>
     <View style={styles.container}>
       <TouchableHighlight style={[styles.button, {backgroundColor: (isJa)? constantColor.logoutColor : constantColor.loginColor}]} onPress={setHookState}>
-        <Text>{(isJa)? "clock in" : "clock out"}</Text>
+        <Text style={styles.text}>{(isJa)? "clock in" : "clock out"}</Text>
       </TouchableHighlight>
     </View>
   );
@@ -30,6 +29,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     height: '100%',
+  },
+  text: {
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: "700",
   },
 });
 
