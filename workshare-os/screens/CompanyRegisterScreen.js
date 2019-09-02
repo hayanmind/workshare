@@ -33,7 +33,7 @@ const CompanyRegisterScreen = ({navigation}) => {
               placeholderTextColor= "rgba(255, 255, 255, 0.5)"  
               returnKeyType="next"
               onSubmitEditing={() => this.companyPasswordInput.focus()}
-              ref={(input) => this.companyEmailInput = input}
+              ref={(input) => { this.companyEmailInput = input }}
               keyboardType="email-address"
               autoCapitalize="none"
               autoCorrect={false}
@@ -45,7 +45,7 @@ const CompanyRegisterScreen = ({navigation}) => {
               returnKeyType="next"
               secureTextEntry
               onSubmitEditing={validateRegister}
-              ref={(input) => this.companyPasswordInput = input}
+              ref={(input) => { this.companyPasswordInput = input }}
               style={styleConst.inputTextField}
             />
             <ButtonCustom style="register" onPress={validateRegister}/>

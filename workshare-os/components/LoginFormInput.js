@@ -31,7 +31,7 @@ const LoginFormInput  = ({ navigation }) => {
         returnKeyType="go"
         secureTextEntry
         onSubmitEditing={validateLogin}
-        ref={(input) => this.passwordInput = input}
+        ref={(input) => { this.passwordInput = input }}
         />
       <TouchableOpacity style={styles.loginButtonContainer} onPress={validateLogin}>
         <Text style={styles.buttonText}>Login</Text>
