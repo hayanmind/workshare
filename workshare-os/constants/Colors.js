@@ -3,6 +3,8 @@ const tintColor = '#2f95dc';
 export default {
   tintColor,
   mainColor: '#8e44ad',
+  loginColor: '#2ecc71',
+  logoutColor: '#e74c3c',
   tabIconDefault: '#ccc',
   tabIconSelected: tintColor,
   tabBar: '#fefefe',
