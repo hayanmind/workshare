@@ -6,7 +6,9 @@ import {
   View,
 } from 'react-native';
 
-import HookButton from '../components/HookButton';
+import ClockInOutButton from '../components/ClockInOutButton';
+import BreakButton from '../components/BreakButton';
+import LeaveButton from '../components/LeaveButton';
 import constantColor from '../constants/Colors';
 
 const ActionsScreen = () => {
@@ -14,18 +16,18 @@ const ActionsScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.clockInButtonContainer}>
-        <HookButton />
+        <ClockInOutButton />
       </View>
       <View style={styles.breakLeaveButtonContainer}>
         <View style={styles.breakButton}>
-          <HookButton />
+          <BreakButton />
         </View>
         <View style={styles.leaveButton}>
-          <HookButton />
+          <LeaveButton />
         </View>
       </View>
       <View style={styles.barChartContainer}>
-        <HookButton />
+        <ClockInOutButton />
       </View>
       <View style={styles.tabBarInfoContainer}>
         <Text style={styles.tabBarInfoText}>
