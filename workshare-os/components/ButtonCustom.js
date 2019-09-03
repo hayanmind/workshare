@@ -17,7 +17,7 @@ const ButtonCustom = (props) => {
   return(
     <TouchableOpacity style={buttonColor} onPress={onPress}>
         <Text style={styles.buttonText}>Register</Text>
-      </TouchableOpacity>
+    </TouchableOpacity>
   );
 };
 

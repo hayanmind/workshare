@@ -35,7 +35,7 @@ const UserRegisterScreen = ({navigation}) => {
               returnKeyType="next"
               secureTextEntry
               onSubmitEditing={() => this.userPasswordInputAgain.focus()}
-              ref={(input) => this.userPasswordInput = input}
+              ref={(input) => { this.userPasswordInput = input; }}
               style={styleConst.inputTextField}
             />
             <Text style={styleConst.inputTextFieldLabel}>Password again:</Text>
@@ -45,7 +45,7 @@ const UserRegisterScreen = ({navigation}) => {
               returnKeyType="go"
               secureTextEntry
               onSubmitEditing={validateRegister}
-              ref={(input) => this.userPasswordInputAgain = input}
+              ref={(input) => { this.userPasswordInputAgain = input }}
               style={styleConst.inputTextField}
             />
             <ButtonCustom style="register" onPress={validateRegister}/>
