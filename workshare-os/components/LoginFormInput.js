@@ -32,12 +32,9 @@ const LoginFormInput  = ({ navigation }) => {
         secureTextEntry
         onSubmitEditing={validateLogin}
         ref={(input) => { this.passwordInput = input }}
-        />
+      />
       <TouchableOpacity style={styles.loginButtonContainer} onPress={validateLogin}>
         <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.registerButtonContainer} onPress={() => navigation.navigate('Register')}>
-        <Text style={styles.buttonText}>Register</Text>
       </TouchableOpacity>
     </View>
   );
@@ -52,16 +49,11 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     marginBottom: 10,
   },
-  registerButtonContainer: {
-    backgroundColor: '#3498db',
-    paddingVertical: 15,
-    marginBottom: 10,
-  },
   buttonText: {
     fontWeight: '700',
     textAlign: 'center',
     color: '#fff',
-  }
+  },
 });
 
 export default withNavigation(LoginFormInput);
