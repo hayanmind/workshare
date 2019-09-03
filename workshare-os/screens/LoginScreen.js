@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, SafeAreaView, StatusBar, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Text, Image, StyleSheet } from 'react-native';
+import { View, SafeAreaView, StatusBar, KeyboardAvoidingView, TouchableWithoutFeedback, TouchableOpacity, Keyboard, Text, Image, StyleSheet } from 'react-native';
 import LoginFormInput from '../components/LoginFormInput';
 import colorConstant from '../constants/Colors';
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content"/>
@@ -21,6 +21,12 @@ const LoginScreen = () => {
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
+      <TouchableOpacity style={styles.registerButtonContainer} onPress={() => navigation.navigate('Register')}>
+        <Text style={styles.registerText}>No account?
+          <Text style={styles.boldText} > Click here, </Text>{"\n"}
+          to register yourself or your company!
+        </Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -45,6 +51,22 @@ const styles = StyleSheet.create({
     width: 200,
     textAlign: 'center',
     opacity: 0.7 ,
+  },
+  registerButtonContainer: {
+    paddingVertical: 15,
+    marginBottom: 10,
+  },
+  buttonText: {
+    fontWeight: '700',
+    textAlign: 'center',
+    color: '#fff',
+  },
+  registerText: {
+    textAlign: 'center',
+    color: '#fff',
+  },
+  boldText: {
+    fontWeight: '700',
   },
 });
 
