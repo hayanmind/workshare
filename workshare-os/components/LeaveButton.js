@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, TouchableHighlight, Modal } from 'react-native';
+import { Text, View, StyleSheet, TouchableHighlight } from 'react-native';
 import constantColor from '../constants/Colors';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -14,8 +14,8 @@ const LeaveButton = () => {
   return(
     <View style={styles.container}>
       <TouchableHighlight 
-        style={[styles.button, 
-        {backgroundColor: constantColor.lightGrayColor}]} 
+        style={[styles.button,
+        {backgroundColor: constantColor.lightGrayColor}]}
         onPress={handleLeavePress}
         underlayColor={constantColor.lightGrayColorOpacity}
       >

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView, Button, StyleSheet } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
+import constantColor from '../constants/Colors';
 
   const SchedulesScreen = ({navigation}) => {
   return (
@@ -17,6 +18,12 @@ import { ExpoLinksView } from '@expo/samples';
 
 SchedulesScreen.navigationOptions = {
   title: 'Member Schedules',
+  headerStyle: {
+    backgroundColor: constantColor.mainColor,
+  },
+  headerTitleStyle: {
+    color: '#fff',
+  },
 };
 
 const styles = StyleSheet.create({

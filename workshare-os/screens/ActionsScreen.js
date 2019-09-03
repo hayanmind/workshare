@@ -10,6 +10,7 @@ import ClockInOutButton from '../components/ClockInOutButton';
 import BreakButton from '../components/BreakButton';
 import LeaveButton from '../components/LeaveButton';
 import constantColor from '../constants/Colors';
+import BarChartAction from '../components/BarChartAction';
 
 const ActionsScreen = () => {
 
@@ -27,7 +28,7 @@ const ActionsScreen = () => {
         </View>
       </View>
       <View style={styles.barChartContainer}>
-        <ClockInOutButton />
+        <BarChartAction />
       </View>
       <View style={styles.tabBarInfoContainer}>
         <Text style={styles.tabBarInfoText}>

@@ -11,7 +11,7 @@ export default {
   logoutColorOpacity: 'rgba(231, 76, 60, 0.8)',
   registerColor: '#3498db',
   tabIconDefault: '#ccc',
-  tabIconSelected: '#2f95dc',
+  tabIconSelected: '#f1c40f',
 };
 
 //   const tintColor = '#2f95dc';

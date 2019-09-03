@@ -1,5 +1,6 @@
 import React from 'react';
 import { ExpoConfigView } from '@expo/samples';
+import constantColor from '../constants/Colors';
 
 const ProfileScreen = () => {
   /**
@@ -11,6 +12,12 @@ const ProfileScreen = () => {
 
 ProfileScreen.navigationOptions = {
   title: 'Profile',
+  headerStyle: {
+    backgroundColor: constantColor.mainColor,
+  },
+  headerTitleStyle: {
+    color: '#fff',
+  },
 };
 
 export default ProfileScreen;

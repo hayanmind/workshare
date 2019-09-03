@@ -7,6 +7,7 @@ import ActionsScreen from '../screens/ActionsScreen';
 import SchedulesScreen from '../screens/SchedulesScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import MemberScheduleScreen from '../screens/MemberScheduleScreen';
+import constantColor from '../constants/Colors';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -73,7 +74,17 @@ const tabNavigator = createBottomTabNavigator({
   ActionsStack: ActionsStack,
   SchedulesStack: SchedulesStack,
   ProfileStack: ProfileStack,
-});
+},
+  {
+  tabBarOptions: {
+    style: {
+      backgroundColor: constantColor.mainColor,
+    },
+    labelStyle: {
+      color: '#ffffff',
+    },
+  }}
+);
 
 tabNavigator.path = '';
 
