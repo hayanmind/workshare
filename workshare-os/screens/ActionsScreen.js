@@ -32,13 +32,13 @@ const ActionsScreen = () => {
       </View>
       <View style={styles.tabBarInfoContainer}>
         <Text style={styles.tabBarInfoText}>
-          Day: 
+          Day:
         </Text>
         <Text style={styles.tabBarInfoText}>
-          Break: 
+          Break:
         </Text>
         <Text style={styles.tabBarInfoText}>
-          Week: 
+          Week:
         </Text>
       </View>
     </View>

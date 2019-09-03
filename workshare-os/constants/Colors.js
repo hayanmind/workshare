@@ -13,13 +13,3 @@ export default {
   tabIconDefault: '#ccc',
   tabIconSelected: '#f1c40f',
 };
-
-//   const tintColor = '#2f95dc';
-//   tintColor,
-//   tabBar: '#fefefe',
-//   errorBackground: 'red',
-//   errorText: '#fff',
-//   warningBackground: '#EAEB5E',
-//   warningText: '#666804',
-//   noticeBackground: tintColor,
-//   noticeText: '#fff',
