@@ -6,12 +6,13 @@ import constantColor from '../constants/Colors';
 const SettingsButton = (props) => {
   const {
     iconPath,
-    text
+    onPress,
+    text,
   } = props;
 
   return(
     <View style={styles.container}>
-      <TouchableOpacity style={styles.touchContainer}>
+      <TouchableOpacity style={styles.touchContainer} onPress={onPress}>
         <Image style={styles.settingIcon} source={iconPath} />
         <View style={styles.seperatorLine} />
         <Text style={styles.textStyle}>{text}</Text>
@@ -20,32 +21,6 @@ const SettingsButton = (props) => {
     </View>
   );
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     // marginVertical: 10,
-//     // paddingHorizontal: 10,
-//   },
-//   settingIcon: {
-//     flex: 1,
-//     width: 40,
-//     height: 40,
-//   },
-//   seperatorLine: {
-
-//   },
-//   textStyle: {
-//     flex: 5,
-//     fontSize: 18,
-//     paddingLeft: 30,
-//     alignSelf: 'center',
-//   },
-//   continue: {
-//     alignSelf: 'center',
-//   },
-// });
 
 const styles = StyleSheet.create({
   container: {
@@ -57,7 +32,9 @@ const styles = StyleSheet.create({
   touchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: constantColor.lightGrayColor,
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: constantColor.lightGrayColor,
     height: 40,
     margin: 5,
     width: '100%',
@@ -72,20 +49,19 @@ const styles = StyleSheet.create({
   rightArrow: {
     position: 'absolute',
     right: 5,
-    color: '#fff',
+    bottom: 5,
+    color: constantColor.lightGrayColor,
   },
   seperatorLine: {
-    backgroundColor : '#fff',
+    backgroundColor : constantColor.lightGrayColor,
     width: 1,
     height: 30
   },
   textStyle: {
-    color: "#fff",
+    color: "#000",
     fontSize: 16,
     marginBottom : 4,
     marginLeft: 5,
-  },
-  continue: {
   },
 });
 

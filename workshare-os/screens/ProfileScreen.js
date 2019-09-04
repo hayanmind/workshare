@@ -1,25 +1,27 @@
 import React from 'react';
-import { View, TouchableOpacity, Image, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet, StatusBar } from 'react-native';
 import constantColor from '../constants/Colors';
 import SettingsButton from '../components/SettingsButton';
-import { AntDesign } from '@expo/vector-icons';
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ navigation }) => {
+
+  const dummyPicuture = require('../assets/images/robot-prod.png');
+
+  const navigator = (routeName) => {
+    navigation.navigate(routeName)
+  };
+
   return(
     <View style={styles.container}>
-      {/* <TouchableOpacity style={{flexDirection: 'row', borderBottomWidth: 5}}>
-        <Image style={{width:40, height:40, flex: 1}} source={require('../assets/images/robot-prod.png')} />
-        <Text style={{flex: 5}}>Settings</Text>
-        <Image style={{width:100, height:40, flex: 1}} source={require('../assets/images/robot-prod.png')} />
-      </TouchableOpacity> */}
-      <SettingsButton text='Settings' iconPath={require('../assets/images/robot-prod.png')}/>
-      <SettingsButton text='Settings' iconPath={require('../assets/images/robot-prod.png')}/>
-      <SettingsButton text='Settings' iconPath={require('../assets/images/robot-prod.png')}/>
-      <SettingsButton text='Settings' iconPath={require('../assets/images/robot-prod.png')}/>
-      <SettingsButton text='Settings' iconPath={require('../assets/images/robot-prod.png')}/>
-      
-      {/* <SettingsButton text='Settings' iconPath={<AntDesign size={25} name="user" />}/> */}
-      {/* <SettingsButton text='Settings' /> */}
+      <StatusBar barStyle="light-content"/>
+      <SettingsButton text='My account' iconPath={dummyPicuture} onPress={() => navigator('MyAccount')}/>
+      <SettingsButton text='Change Email' iconPath={dummyPicuture} onPress={() => navigator('ChangeEmail')}/>
+      <SettingsButton text='Change password' iconPath={dummyPicuture} onPress={() => navigator('ChangePassword')}/>
+      <SettingsButton text='Leaves' iconPath={dummyPicuture} onPress={() => navigator('Leaves')}/>
+      <SettingsButton text='Wage' iconPath={dummyPicuture} onPress={() => navigator('Wage')}/>
+      <SettingsButton text='Settings' iconPath={dummyPicuture} onPress={() => navigator('Settings')}/>
+      <SettingsButton text='Switch Company' iconPath={dummyPicuture} onPress={() => navigator('SwitchCompany')}/>
+      <SettingsButton text='Log out' iconPath={dummyPicuture} onPress={() => alert('navigation comes later')}/>
     </View>
   );
 }

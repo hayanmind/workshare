@@ -1,18 +1,18 @@
 import React from 'react';
 import { View, StatusBar, Text, StyleSheet } from 'react-native';
 
-const MemberScheduleScreen = () => {
+const WageScreen = () => {
 
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content"/>
-      <Text>Hello I'm a member schedule</Text>
+      <Text>Hello I'm a wage screen</Text>
     </View>
   );
 }
 
-MemberScheduleScreen.navigationOptions =  {
-  title: 'Member Schedule',
+WageScreen.navigationOptions =  {
+  title: 'Wage',
 };
 
 const styles = StyleSheet.create({
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MemberScheduleScreen;
+export default WageScreen;

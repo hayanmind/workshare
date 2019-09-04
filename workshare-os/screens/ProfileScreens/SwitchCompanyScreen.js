@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StatusBar, Text, StyleSheet } from 'react-native';
 
-const MemberScheduleScreen = () => {
+const SwitchCompanyScreen = () => {
 
   return (
     <View style={styles.container}>
@@ -11,8 +11,8 @@ const MemberScheduleScreen = () => {
   );
 }
 
-MemberScheduleScreen.navigationOptions =  {
-  title: 'Member Schedule',
+SwitchCompanyScreen.navigationOptions =  {
+  title: 'SwitchCompany',
 };
 
 const styles = StyleSheet.create({
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MemberScheduleScreen;
+export default SwitchCompanyScreen;
