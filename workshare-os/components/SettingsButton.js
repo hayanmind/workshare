@@ -26,13 +26,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginVertical: 5,
+    marginHorizontal: 10,
   },
   touchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#fff',
     borderWidth: 1,
-    borderColor: constantColor.lightGrayColor,
+    borderColor: constantColor.mainColor,
     height: 40,
     margin: 5,
     width: '100%',
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
     color: constantColor.lightGrayColor,
   },
   seperatorLine: {
-    backgroundColor : constantColor.lightGrayColor,
+    backgroundColor : constantColor.mainColor,
     width: 1,
     height: 30
   },

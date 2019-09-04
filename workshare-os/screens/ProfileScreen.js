@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, StatusBar, ScrollView } from 'react-native';
 import constantColor from '../constants/Colors';
 import SettingsButton from '../components/SettingsButton';
 
@@ -12,7 +12,7 @@ const ProfileScreen = ({ navigation }) => {
   };
 
   return(
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <StatusBar barStyle="light-content"/>
       <View style={styles.buttonContainer}>
         <Text style={styles.buttonLabel}>Users Name</Text>
@@ -31,7 +31,7 @@ const ProfileScreen = ({ navigation }) => {
         <SettingsButton text='Switch Company' iconPath={dummyPicuture} onPress={() => navigator('SwitchCompany')}/>
         <SettingsButton text='Log out' iconPath={dummyPicuture} onPress={() => alert('navigation comes later')}/>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
