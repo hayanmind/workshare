@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, StatusBar, Text, StyleSheet } from 'react-native';
+import { View, StatusBar, Platform, Text, StyleSheet } from 'react-native';
 
 const MyAccountScreen = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content"/>
+      <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"}/>
       <Text>Hello I'm a my account screen</Text>
     </View>
   );

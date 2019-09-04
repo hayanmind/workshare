@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, StatusBar, Text, StyleSheet } from 'react-native';
+import { View, StatusBar, Platform, Text, StyleSheet } from 'react-native';
 
 const SwitchCompanyScreen = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content"/>
-      <Text>Hello I'm a member schedule</Text>
+      <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"}/>
+      <Text>Hello I'm a switch company screen</Text>
     </View>
   );
 }

@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, StatusBar, Text, StyleSheet } from 'react-native';
+import { View, StatusBar, Platform, Text, StyleSheet } from 'react-native';
 
 const LeavesScreen = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content"/>
+      <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"}/>
       <Text>Hello I'm a leave screen</Text>
     </View>
   );
