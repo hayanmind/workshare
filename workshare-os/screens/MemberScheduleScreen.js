@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StatusBar, Text, StyleSheet } from 'react-native';
 
 const MemberScheduleScreen = () => {
 
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="dark-content"/>
       <Text>Hello I'm a member schedule</Text>
     </View>
   );

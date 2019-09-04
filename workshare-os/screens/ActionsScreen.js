@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Text,
   View,
+  StatusBar,
 } from 'react-native';
 
 import ClockInOutButton from '../components/ClockInOutButton';
@@ -16,6 +17,7 @@ const ActionsScreen = () => {
 
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="light-content"/>
       <View style={styles.clockInButtonContainer}>
         <ClockInOutButton />
       </View>
