@@ -1,4 +1,4 @@
-# workshare
+# WorkshareOS
 ### An open-source React-Native project to share working hours and work status among colleagues.
 ### How to use:
 > Since Apple blocked other projects in the Expo application on the smartphone, I will show you the how to install and show the application manually.
