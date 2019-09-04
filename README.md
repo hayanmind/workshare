@@ -1,7 +1,7 @@
 # WorkshareOS
 ### An open-source React-Native project to share working hours and work status among colleagues.
 ### How to use:
-> Since Apple blocked other projects in the Expo application on the smartphone, I will show you the how to install and show the application manually.
+> Since Apple blocked to open other Expo projects in the Expo application on iOS devices, I will show you how to install Expo and show the application on your smartphone, on an iOS or Android simulator manually.
 1. Is is recommended to use the [latest NodeJS version](https://nodejs.org/en/) and to install [watchman](https://facebook.github.io/watchman/docs/install.html) with `brew install watchman`. If you don't have brew, you can install it [here](https://brew.sh).
 I use [nvm](https://github.com/nvm-sh/nvm) (node version manager) to easily switch between NodeJS version but it can be stressful to install this.
 2. Run `npm install expo-cli --global` to get the command line tool.
