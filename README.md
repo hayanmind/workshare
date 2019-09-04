@@ -24,5 +24,5 @@ Scan the QR code with your camera and the project will open in the expo applicat
 Also, you can open the application on a simulator by pressing a for Android or i for iOS in the command line tool or by pressing 'Run on Android device/emulator' or 'Run on iOS simulator' on the Expo windon in your web browser.
 Here are guides for setting up the simulators for iOS and Android: [iOS](https://docs.expo.io/versions/v34.0.0/workflow/ios-simulator/)/[Android](https://docs.expo.io/versions/v34.0.0/workflow/android-studio-emulator/).
 
-If you have questions, then contact me or read the official [Expo Docs]()
+If you have questions, then contact me or read the official [Expo Docs](https://docs.expo.io/versions/v34.0.0/).
 
