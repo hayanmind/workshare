@@ -103,11 +103,12 @@ const styles = StyleSheet.create({
       },
     }),
     alignItems: 'center',
-    backgroundColor: constantColor.registerColor,
+    backgroundColor: constantColor.tabIconSelected,
   },
   tabBarInfoText: {
     fontSize: 14,
-    color: '#fff',
+    fontWeight: '700',
+    color: constantColor.mainColor,
     textAlign: 'center',
   },
 });

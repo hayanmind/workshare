@@ -9,7 +9,6 @@ const MembersStatus = (props) => {
   } = props;
 
   const statusDot = (status) => {
-    console.log(status);
     switch (status) {
       case 'available':
         return([styles.dot, {backgroundColor: constantColor.loginColor}]);
@@ -29,14 +28,20 @@ const MembersStatus = (props) => {
       <TouchableOpacity style={styles.touchContainer} onPress={onPress}>
         <View style={styles.statusContainer}>
           <View style={styles.clockInContainer}>
-            <Text>ClockIn</Text>
+            {
+            (status === 'empty')
+              ? <Text>NotClockedIn</Text>
+              : <Text>ClockInT</Text>
+            }
           </View>
           <View style={styles.statusSeperator} />
           <View style={styles.clockOutContainer}>
             {
-            (status === 'empty')
-              ? <Text>ClockOut</Text>
-              : <View style={statusDot(status)}/>
+            (status === 'clockedOut')
+              ? <Text>ClockOutT</Text>
+              : (status === 'empty')
+                ? <Text />
+                : <View style={statusDot(status)}/>
             }
           </View>
         </View>
@@ -46,7 +51,7 @@ const MembersStatus = (props) => {
             <Text style={styles.userNameText}>Name of user</Text>
           </View>
           <View style={styles.barChartContainer}>
-
+            <Text>Placeholder for bar chart</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -65,7 +70,7 @@ const styles = StyleSheet.create({
   touchContainer: {
     flex: 1,
     flexDirection: 'row',
-    height: 90,
+    height: 85,
   },
   statusContainer: {
     flex: 60,
@@ -105,11 +110,15 @@ const styles = StyleSheet.create({
   },
   barChartContainer: {
     flex: 2,
+    justifyContent: 'center',
+    marginLeft: 10,
+    backgroundColor: constantColor.lightGrayColor,
+    opacity: 0.2,
   },
   dot: {
     height: 20,
     width: 20,
-    borderRadius: '50%',
+    borderRadius: 50,
   },
 });
 

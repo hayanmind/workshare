@@ -4,7 +4,6 @@ import MembersStatus from '../components/MembersStatus';
 import constantColor from '../constants/Colors';
 
   const SchedulesScreen = ({navigation}) => {
-
   return (
     <ScrollView style={styles.container}>
       <StatusBar barStyle="light-content"/>
@@ -12,7 +11,7 @@ import constantColor from '../constants/Colors';
         <MembersStatus onPress={() => navigation.navigate('Schedule')} status='available'/>
         <MembersStatus onPress={() => navigation.navigate('Schedule')} status='busy'/>
         <MembersStatus onPress={() => navigation.navigate('Schedule')}/>
-        <MembersStatus onPress={() => navigation.navigate('Schedule')} status='available'/>
+        <MembersStatus onPress={() => navigation.navigate('Schedule')} status='clockedOut'/>
         <MembersStatus onPress={() => navigation.navigate('Schedule')}/>
         <MembersStatus onPress={() => navigation.navigate('Schedule')} status='available'/>
         <MembersStatus onPress={() => navigation.navigate('Schedule')} status='available'/>
