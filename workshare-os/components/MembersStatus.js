@@ -5,7 +5,24 @@ import constantColor from '../constants/Colors';
 const MembersStatus = (props) => {
   const {
     onPress,
+    status = 'empty',
   } = props;
+
+  const statusDot = (status) => {
+    console.log(status);
+    switch (status) {
+      case 'available':
+        return([styles.dot, {backgroundColor: constantColor.loginColor}]);
+      case 'break':
+        return([styles.dot, {backgroundColor: constantColor.breakColor}]);
+      case 'busy':
+        return([styles.dot, {backgroundColor: constantColor.logoutColor}]);
+      case 'leave':
+        return([styles.dot, {backgroundColor: constantColor.lightGrayColor}]);
+      default:
+        break;
+    }
+  };
 
   return(
     <View style={styles.container}>      
@@ -16,7 +33,11 @@ const MembersStatus = (props) => {
           </View>
           <View style={styles.statusSeperator} />
           <View style={styles.clockOutContainer}>
-            <Text>ClockOut</Text>
+            {
+            (status === 'empty')
+              ? <Text>ClockOut</Text>
+              : <View style={statusDot(status)}/>
+            }
           </View>
         </View>
         <View style={styles.seperator} />
@@ -84,6 +105,11 @@ const styles = StyleSheet.create({
   },
   barChartContainer: {
     flex: 2,
+  },
+  dot: {
+    height: 20,
+    width: 20,
+    borderRadius: '50%',
   },
 });
 

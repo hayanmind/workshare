@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StatusBar, View, Button, StyleSheet } from 'react-native';
+import { ScrollView, StatusBar, StyleSheet } from 'react-native';
 import MembersStatus from '../components/MembersStatus';
 import constantColor from '../constants/Colors';
 
@@ -8,16 +8,16 @@ import constantColor from '../constants/Colors';
   return (
     <ScrollView style={styles.container}>
       <StatusBar barStyle="light-content"/>
+        <MembersStatus onPress={() => navigation.navigate('Schedule')} status='break'/>
+        <MembersStatus onPress={() => navigation.navigate('Schedule')} status='available'/>
+        <MembersStatus onPress={() => navigation.navigate('Schedule')} status='busy'/>
         <MembersStatus onPress={() => navigation.navigate('Schedule')}/>
+        <MembersStatus onPress={() => navigation.navigate('Schedule')} status='available'/>
         <MembersStatus onPress={() => navigation.navigate('Schedule')}/>
+        <MembersStatus onPress={() => navigation.navigate('Schedule')} status='available'/>
+        <MembersStatus onPress={() => navigation.navigate('Schedule')} status='available'/>
         <MembersStatus onPress={() => navigation.navigate('Schedule')}/>
-        <MembersStatus onPress={() => navigation.navigate('Schedule')}/>
-        <MembersStatus onPress={() => navigation.navigate('Schedule')}/>
-        <MembersStatus onPress={() => navigation.navigate('Schedule')}/>
-        <MembersStatus onPress={() => navigation.navigate('Schedule')}/>
-        <MembersStatus onPress={() => navigation.navigate('Schedule')}/>
-        <MembersStatus onPress={() => navigation.navigate('Schedule')}/>
-        <MembersStatus onPress={() => navigation.navigate('Schedule')}/>
+        <MembersStatus onPress={() => navigation.navigate('Schedule')} status='break'/>
         <MembersStatus onPress={() => navigation.navigate('Schedule')}/>
     </ScrollView>
   );
