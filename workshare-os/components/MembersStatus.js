@@ -6,6 +6,7 @@ const MembersStatus = (props) => {
   const {
     onPress,
     status = 'empty',
+    memberName,
   } = props;
 
   const statusDot = (status) => {
@@ -19,7 +20,7 @@ const MembersStatus = (props) => {
       case 'leave':
         return([styles.dot, {backgroundColor: constantColor.lightGrayColor}]);
       default:
-        break;
+        return([styles.dot, {backgroundColor: constantColor.loginColor}]);
     }
   };
 
@@ -31,16 +32,18 @@ const MembersStatus = (props) => {
             {
             (status === 'empty')
               ? <Text>NotClockedIn</Text>
-              : <Text>ClockInT</Text>
+              : (status === 'leave')
+                ? <Text>OnLeave</Text>
+                : <Text>ClockInT</Text>
             }
           </View>
           <View style={styles.statusSeperator} />
           <View style={styles.clockOutContainer}>
             {
-            (status === 'clockedOut')
-              ? <Text>ClockOutT</Text>
-              : (status === 'empty')
-                ? <Text />
+            (status === 'empty')
+              ? <Text />
+              : (status === 'clockedOut')
+                ? <Text>ClockOutT</Text>
                 : <View style={statusDot(status)}/>
             }
           </View>
@@ -48,7 +51,7 @@ const MembersStatus = (props) => {
         <View style={styles.seperator} />
         <View style={styles.nameChartContainer}>
           <View style={styles.userNameContainer}>
-            <Text style={styles.userNameText}>Name of user</Text>
+            <Text style={styles.userNameText}>{memberName}</Text>
           </View>
           <View style={styles.barChartContainer}>
             <Text>Placeholder for bar chart</Text>

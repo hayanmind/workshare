@@ -7,17 +7,17 @@ import constantColor from '../constants/Colors';
   return (
     <ScrollView style={styles.container}>
       <StatusBar barStyle="light-content"/>
-        <MembersStatus onPress={() => navigation.navigate('Schedule')} status='break'/>
-        <MembersStatus onPress={() => navigation.navigate('Schedule')} status='available'/>
-        <MembersStatus onPress={() => navigation.navigate('Schedule')} status='busy'/>
-        <MembersStatus onPress={() => navigation.navigate('Schedule')}/>
-        <MembersStatus onPress={() => navigation.navigate('Schedule')} status='clockedOut'/>
-        <MembersStatus onPress={() => navigation.navigate('Schedule')}/>
-        <MembersStatus onPress={() => navigation.navigate('Schedule')} status='available'/>
-        <MembersStatus onPress={() => navigation.navigate('Schedule')} status='available'/>
-        <MembersStatus onPress={() => navigation.navigate('Schedule')}/>
-        <MembersStatus onPress={() => navigation.navigate('Schedule')} status='break'/>
-        <MembersStatus onPress={() => navigation.navigate('Schedule')}/>
+        <MembersStatus memberName='User Name - break' onPress={() => navigation.navigate('Schedule')} status='break'/>
+        <MembersStatus memberName='User Name - available'onPress={() => navigation.navigate('Schedule')} status='available'/>
+        <MembersStatus memberName='User Name - busy'onPress={() => navigation.navigate('Schedule')} status='busy'/>
+        <MembersStatus memberName='User Name - notClockedIn' onPress={() => navigation.navigate('Schedule')}/>
+        <MembersStatus memberName='User Name - clocked out' onPress={() => navigation.navigate('Schedule')} status='clockedOut'/>
+        <MembersStatus memberName='User Name - notClockedIn' onPress={() => navigation.navigate('Schedule')}/>
+        <MembersStatus memberName='User Name - available' onPress={() => navigation.navigate('Schedule')} status='available'/>
+        <MembersStatus memberName='User Name - available' onPress={() => navigation.navigate('Schedule')} status='available'/>
+        <MembersStatus memberName='User Name - notClockedIn' onPress={() => navigation.navigate('Schedule')}/>
+        <MembersStatus memberName='User Name - break' onPress={() => navigation.navigate('Schedule')} status='break'/>
+        <MembersStatus memberName='User Name - notClockedIn' onPress={() => navigation.navigate('Schedule')}/>
     </ScrollView>
   );
 }
