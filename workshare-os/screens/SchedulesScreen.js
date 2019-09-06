@@ -1,18 +1,23 @@
 import React from 'react';
-import { ScrollView, StatusBar, Button, StyleSheet } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
+import { ScrollView, StatusBar, StyleSheet } from 'react-native';
+import MembersStatus from '../components/MembersStatus';
 import constantColor from '../constants/Colors';
 
   const SchedulesScreen = ({navigation}) => {
   return (
     <ScrollView style={styles.container}>
       <StatusBar barStyle="light-content"/>
-      {/**
-       * Go ahead and delete ExpoLinksView and replace it with your content;
-       * we just wanted to provide you with some helpful links.
-       */}
-      <ExpoLinksView />
-      <Button title={'To a Schedule'} onPress={() => navigation.navigate('Schedule')}/>
+        <MembersStatus memberName='User Name - break' onPress={() => navigation.navigate('Schedule')} status='break'/>
+        <MembersStatus memberName='User Name - available'onPress={() => navigation.navigate('Schedule')} status='available'/>
+        <MembersStatus memberName='User Name - busy'onPress={() => navigation.navigate('Schedule')} status='busy'/>
+        <MembersStatus memberName='User Name - notClockedIn' onPress={() => navigation.navigate('Schedule')}/>
+        <MembersStatus memberName='User Name - clocked out' onPress={() => navigation.navigate('Schedule')} status='clockedOut'/>
+        <MembersStatus memberName='User Name - leave' onPress={() => navigation.navigate('Schedule')} status='leave'/>
+        <MembersStatus memberName='User Name - available' onPress={() => navigation.navigate('Schedule')} status='available'/>
+        <MembersStatus memberName='User Name - available' onPress={() => navigation.navigate('Schedule')} status='available'/>
+        <MembersStatus memberName='User Name - notClockedIn' onPress={() => navigation.navigate('Schedule')}/>
+        <MembersStatus memberName='User Name - break' onPress={() => navigation.navigate('Schedule')} status='break'/>
+        <MembersStatus memberName='User Name - notClockedIn' onPress={() => navigation.navigate('Schedule')}/>
     </ScrollView>
   );
 }
@@ -30,8 +35,8 @@ SchedulesScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
     backgroundColor: '#fff',
+    padding: 5,
   },
 });
 

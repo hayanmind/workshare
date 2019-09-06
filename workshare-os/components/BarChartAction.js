@@ -18,7 +18,7 @@ const BarChartAction = () => {
         underlayColor={constantColor.lightGrayColorOpacity}
       >
         <View>
-          <Text style={styles.text}>I am a dummy label</Text>
+          <Text style={styles.text}>Placeholder for bar two charts</Text>
           <AntDesign style={styles.barChartLayout} name="bars" size={20} color="#000000" />
           <AntDesign style={styles.barChartLayout} name="bars" size={20} color="#000000" />
         </View>
