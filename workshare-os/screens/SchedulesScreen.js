@@ -12,7 +12,7 @@ import constantColor from '../constants/Colors';
         <MembersStatus memberName='User Name - busy'onPress={() => navigation.navigate('Schedule')} status='busy'/>
         <MembersStatus memberName='User Name - notClockedIn' onPress={() => navigation.navigate('Schedule')}/>
         <MembersStatus memberName='User Name - clocked out' onPress={() => navigation.navigate('Schedule')} status='clockedOut'/>
-        <MembersStatus memberName='User Name - notClockedIn' onPress={() => navigation.navigate('Schedule')}/>
+        <MembersStatus memberName='User Name - leave' onPress={() => navigation.navigate('Schedule')} status='leave'/>
         <MembersStatus memberName='User Name - available' onPress={() => navigation.navigate('Schedule')} status='available'/>
         <MembersStatus memberName='User Name - available' onPress={() => navigation.navigate('Schedule')} status='available'/>
         <MembersStatus memberName='User Name - notClockedIn' onPress={() => navigation.navigate('Schedule')}/>

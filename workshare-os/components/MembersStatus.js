@@ -31,10 +31,10 @@ const MembersStatus = (props) => {
           <View style={styles.clockInContainer}>
             {
             (status === 'empty')
-              ? <Text>NotClockedIn</Text>
+              ? <Text>Not ClockedIn</Text>
               : (status === 'leave')
-                ? <Text>OnLeave</Text>
-                : <Text>ClockInT</Text>
+                ? <Text>On Leave</Text>
+                : <Text>ClockIn Time</Text>
             }
           </View>
           <View style={styles.statusSeperator} />
@@ -43,7 +43,7 @@ const MembersStatus = (props) => {
             (status === 'empty')
               ? <Text />
               : (status === 'clockedOut')
-                ? <Text>ClockOutT</Text>
+                ? <Text>ClockOut Time</Text>
                 : <View style={statusDot(status)}/>
             }
           </View>
