@@ -4,7 +4,7 @@ import colorConstant from '../constants/Colors';
 import styleConst from '../constants/Layout';
 import ButtonCustom from '../components/ButtonCustom';
 
-const CompanyRegisterScreen = ({navigation}) => {
+const CompanyRegisterScreen = ({ navigation }) => {
 
   const validateRegister = () => {
     navigation.navigate('Login');
@@ -12,7 +12,7 @@ const CompanyRegisterScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"}/>
+      <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"} />
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={styles.container}>
           <View style={styles.viewContainer}>
@@ -20,17 +20,17 @@ const CompanyRegisterScreen = ({navigation}) => {
             <TextInput
               style={styleConst.inputTextField}
               placeholder="My company"
-              placeholderTextColor= "rgba(255, 255, 255, 0.5)"  
+              placeholderTextColor="rgba(255, 255, 255, 0.5)"
               returnKeyType="next"
               onSubmitEditing={() => this.companyEmailInput.focus()}
               autoCapitalize="none"
               autoCorrect={false}
             />
-            <Text style={styleConst.inputTextFieldLabel}>Your account email address:</Text>
+            <Text style={styleConst.inputTextFieldLabel}>Your Account Email Address:</Text>
             <TextInput
               style={styleConst.inputTextField}
               placeholder="example@domain.com"
-              placeholderTextColor= "rgba(255, 255, 255, 0.5)"  
+              placeholderTextColor="rgba(255, 255, 255, 0.5)"
               returnKeyType="next"
               onSubmitEditing={() => this.companyPasswordInput.focus()}
               ref={(input) => { this.companyEmailInput = input }}
@@ -41,14 +41,14 @@ const CompanyRegisterScreen = ({navigation}) => {
             <Text style={styleConst.inputTextFieldLabel}>Password:</Text>
             <TextInput
               placeholder="********"
-              placeholderTextColor= "rgba(255, 255, 255, 0.5)"
+              placeholderTextColor="rgba(255, 255, 255, 0.5)"
               returnKeyType="next"
               secureTextEntry
               onSubmitEditing={validateRegister}
               ref={(input) => { this.companyPasswordInput = input }}
               style={styleConst.inputTextField}
             />
-            <ButtonCustom style="register" onPress={validateRegister}/>
+            <ButtonCustom style="register" onPress={validateRegister} />
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>

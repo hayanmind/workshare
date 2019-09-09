@@ -17,7 +17,7 @@ const ActionsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content"/>
+      <StatusBar barStyle="light-content" />
       <View style={styles.clockInButtonContainer}>
         <ClockInOutButton />
       </View>
