@@ -18,7 +18,7 @@ I use [nvm](https://github.com/nvm-sh/nvm) (node version manager) to easily swit
  - run `yarn start` or `npm start` to start the project
  
 Then, a window in the browser tab should open and you will see a QR code. Now you should download the Expo application on your smartphone.
-For [iOS](https://apps.apple.com/app/apple-store/id982107779) and for [Android](https://play.google.com/store/apps/details?id=host.exp.exponent&referrer=www).
+Download the application for [iOS](https://apps.apple.com/app/apple-store/id982107779) or [Android](https://play.google.com/store/apps/details?id=host.exp.exponent&referrer=www).
 Scan the QR code with your camera and the project will open in the expo application.
 
 Also, you can open the application on a simulator by pressing a for Android or i for iOS in the command line tool or by pressing 'Run on Android device/emulator' or 'Run on iOS simulator' on the Expo window in your web browser.
