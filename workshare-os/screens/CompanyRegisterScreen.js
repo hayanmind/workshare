@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StatusBar, Platform, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, View, Text, TextInput, StyleSheet } from 'react-native';
+import { SafeAreaView, StatusBar, Platform, TouchableWithoutFeedback, Keyboard, View, Text, TextInput, StyleSheet } from 'react-native';
 import colorConstant from '../constants/Colors';
 import styleConst from '../constants/Layout';
 import ButtonCustom from '../components/ButtonCustom';
