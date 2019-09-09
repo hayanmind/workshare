@@ -5,13 +5,13 @@ const MyAccountScreen = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"}/>
+      <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"} />
       <Text>Hello I'm a my account screen</Text>
     </View>
   );
 }
 
-MyAccountScreen.navigationOptions =  {
+MyAccountScreen.navigationOptions = {
   title: 'My Account',
 };
 

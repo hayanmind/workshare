@@ -10,7 +10,7 @@ const SettingsButton = (props) => {
     text,
   } = props;
 
-  return(
+  return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.touchContainer} onPress={onPress}>
         <Image style={styles.settingIcon} source={iconPath} />
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     margin: 5,
     height: 25,
     width: 25,
-    resizeMode : 'stretch',
+    resizeMode: 'stretch',
   },
   rightArrow: {
     position: 'absolute',
@@ -52,14 +52,14 @@ const styles = StyleSheet.create({
     color: constantColor.lightGrayColor,
   },
   seperatorLine: {
-    backgroundColor : constantColor.mainColor,
+    backgroundColor: constantColor.mainColor,
     width: 1,
     height: 30
   },
   textStyle: {
     color: "#000",
     fontSize: 16,
-    marginBottom : 4,
+    marginBottom: 4,
     marginLeft: 5,
   },
 });

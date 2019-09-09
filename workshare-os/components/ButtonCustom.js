@@ -1,22 +1,22 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet} from 'react-native'
+import { TouchableOpacity, Text, StyleSheet } from 'react-native'
 
 const ButtonCustom = (props) => {
-  
+
   const {
     style = {},
     onPress,
   } = props;
 
-  const buttonColor = (style === 'login') 
+  const buttonColor = (style === 'login')
     ? styles.loginButton
     : (style === 'register')
       ? styles.registerButton
       : styles.buttonDefaultStyle
 
-  return(
+  return (
     <TouchableOpacity style={buttonColor} onPress={onPress}>
-        <Text style={styles.buttonText}>Register</Text>
+      <Text style={styles.buttonText}>Register</Text>
     </TouchableOpacity>
   );
 };

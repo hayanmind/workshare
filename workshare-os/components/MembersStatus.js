@@ -12,39 +12,39 @@ const MembersStatus = (props) => {
   const statusDot = (status) => {
     switch (status) {
       case 'available':
-        return([styles.dot, {backgroundColor: constantColor.loginColor}]);
+        return ([styles.dot, { backgroundColor: constantColor.loginColor }]);
       case 'break':
-        return([styles.dot, {backgroundColor: constantColor.breakColor}]);
+        return ([styles.dot, { backgroundColor: constantColor.breakColor }]);
       case 'busy':
-        return([styles.dot, {backgroundColor: constantColor.logoutColor}]);
+        return ([styles.dot, { backgroundColor: constantColor.logoutColor }]);
       case 'leave':
-        return([styles.dot, {backgroundColor: constantColor.lightGrayColor}]);
+        return ([styles.dot, { backgroundColor: constantColor.lightGrayColor }]);
       default:
-        return([styles.dot, {backgroundColor: constantColor.loginColor}]);
+        return ([styles.dot, { backgroundColor: constantColor.loginColor }]);
     }
   };
 
-  return(
-    <View style={styles.container}>      
+  return (
+    <View style={styles.container}>
       <TouchableOpacity style={styles.touchContainer} onPress={onPress}>
         <View style={styles.statusContainer}>
           <View style={styles.clockInContainer}>
             {
-            (status === 'empty')
-              ? <Text>Not ClockedIn</Text>
-              : (status === 'leave')
-                ? <Text>On Leave</Text>
-                : <Text>ClockIn Time</Text>
+              (status === 'empty')
+                ? <Text>Not ClockedIn</Text>
+                : (status === 'leave')
+                  ? <Text>On Leave</Text>
+                  : <Text>ClockIn Time</Text>
             }
           </View>
           <View style={styles.statusSeperator} />
           <View style={styles.clockOutContainer}>
             {
-            (status === 'empty')
-              ? <Text />
-              : (status === 'clockedOut')
-                ? <Text>ClockOut Time</Text>
-                : <View style={statusDot(status)}/>
+              (status === 'empty')
+                ? <Text />
+                : (status === 'clockedOut')
+                  ? <Text>ClockOut Time</Text>
+                  : <View style={statusDot(status)} />
             }
           </View>
         </View>
@@ -96,8 +96,8 @@ const styles = StyleSheet.create({
   },
   seperator: {
     flex: 1,
-    alignSelf:'center',
-    backgroundColor : constantColor.mainColor,
+    alignSelf: 'center',
+    backgroundColor: constantColor.mainColor,
     height: 60,
   },
   nameChartContainer: {

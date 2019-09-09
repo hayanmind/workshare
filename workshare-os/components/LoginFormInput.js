@@ -3,7 +3,7 @@ import { View, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-nativ
 import { withNavigation } from 'react-navigation';
 import styleConst from '../constants/Layout';
 
-const LoginFormInput  = ({ navigation }) => {
+const LoginFormInput = ({ navigation }) => {
 
   // function name is more suitable when real login function is on
   const validateLogin = () => {
@@ -13,10 +13,10 @@ const LoginFormInput  = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styleConst.inputTextFieldLabel}>Email address:</Text>
-      <TextInput 
+      <TextInput
         style={styleConst.inputTextField}
         placeholder="example@domain.com"
-        placeholderTextColor= "rgba(255, 255, 255, 0.5)"  
+        placeholderTextColor="rgba(255, 255, 255, 0.5)"
         returnKeyType="next"
         onSubmitEditing={() => this.passwordInput.focus()}
         keyboardType="email-address"
@@ -24,10 +24,10 @@ const LoginFormInput  = ({ navigation }) => {
         autoCorrect={false}
       />
       <Text style={styleConst.inputTextFieldLabel}>Password:</Text>
-      <TextInput 
+      <TextInput
         style={styleConst.inputTextField}
         placeholder="********"
-        placeholderTextColor= "rgba(255, 255, 255, 0.5)"
+        placeholderTextColor="rgba(255, 255, 255, 0.5)"
         returnKeyType="go"
         secureTextEntry
         onSubmitEditing={validateLogin}

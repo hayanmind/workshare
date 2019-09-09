@@ -5,13 +5,13 @@ const WageScreen = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"}/>
+      <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"} />
       <Text>Hello I'm a wage screen</Text>
     </View>
   );
 }
 
-WageScreen.navigationOptions =  {
+WageScreen.navigationOptions = {
   title: 'Wage',
 };
 

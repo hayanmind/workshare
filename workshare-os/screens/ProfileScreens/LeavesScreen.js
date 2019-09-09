@@ -5,13 +5,13 @@ const LeavesScreen = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"}/>
+      <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"} />
       <Text>Hello I'm a leave screen</Text>
     </View>
   );
 }
 
-LeavesScreen.navigationOptions =  {
+LeavesScreen.navigationOptions = {
   title: 'Leaves',
 };
 

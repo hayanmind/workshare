@@ -5,13 +5,13 @@ const ChangePasswordScreen = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"}/>
+      <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"} />
       <Text>Hello I'm a change password screen</Text>
     </View>
   );
 }
 
-ChangePasswordScreen.navigationOptions =  {
+ChangePasswordScreen.navigationOptions = {
   title: 'Change Password',
 };
 

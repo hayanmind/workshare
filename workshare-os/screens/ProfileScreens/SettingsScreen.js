@@ -5,13 +5,13 @@ const SettingsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"}/>
+      <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"} />
       <Text>Hello I'm a settings screen</Text>
     </View>
   );
 }
 
-SettingsScreen.navigationOptions =  {
+SettingsScreen.navigationOptions = {
   title: 'Settings',
 };
 

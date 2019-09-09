@@ -5,13 +5,13 @@ const MemberScheduleScreen = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content"/>
+      <StatusBar barStyle="dark-content" />
       <Text>Hello I'm a member schedule</Text>
     </View>
   );
 }
 
-MemberScheduleScreen.navigationOptions =  {
+MemberScheduleScreen.navigationOptions = {
   title: 'Member Schedule',
 };
 

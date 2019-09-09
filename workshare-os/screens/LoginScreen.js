@@ -1,17 +1,18 @@
 import React from 'react';
-import { View, SafeAreaView, StatusBar, KeyboardAvoidingView, TouchableWithoutFeedback, TouchableOpacity, Keyboard, Text, Image, StyleSheet } from 'react-native';
+import { View, SafeAreaView, StatusBar, TouchableWithoutFeedback, TouchableOpacity, Keyboard, Text, Image, StyleSheet } from 'react-native';
 import LoginFormInput from '../components/LoginFormInput';
 import colorConstant from '../constants/Colors';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const LoginScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content"/>
-      <KeyboardAvoidingView behavior="padding" style={styles.container}>
+      <StatusBar barStyle="light-content" />
+      <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }} enableOnAndroid={true}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={styles.container}>
           <View style={styles.container}>
             <View style={styles.logoContainer}>
-              <Image 
+              <Image
                 style={styles.logo}
                 source={require('../assets/images/LOGO.png')}
               />
@@ -20,10 +21,10 @@ const LoginScreen = ({ navigation }) => {
             <LoginFormInput />
           </View>
         </TouchableWithoutFeedback>
-      </KeyboardAvoidingView>
+      </KeyboardAwareScrollView>
       <TouchableOpacity style={styles.registerButtonContainer} onPress={() => navigation.navigate('Register')}>
         <Text style={styles.registerText}>No account?
-          <Text style={styles.boldText} > Click here, </Text>{"\n"}
+          <Text style={styles.boldText}> Click here, </Text>{"\n"}
           to register yourself or your company!
         </Text>
       </TouchableOpacity>
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     width: 200,
     textAlign: 'center',
-    opacity: 0.7 ,
+    opacity: 0.7,
   },
   registerButtonContainer: {
     paddingVertical: 15,
