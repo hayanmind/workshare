@@ -3,6 +3,7 @@ import { SafeAreaView, StatusBar, Platform, KeyboardAvoidingView, TouchableWitho
 import colorConstant from '../constants/Colors';
 import styleConst from '../constants/Layout';
 import ButtonCustom from '../components/ButtonCustom';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const CompanyRegisterScreen = ({ navigation }) => {
 
@@ -10,10 +11,12 @@ const CompanyRegisterScreen = ({ navigation }) => {
     navigation.navigate('Login');
   };
 
+  const extraScrollHeightPlatform = (Platform.OS === 'ios' ? 110 : 20);
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"} />
-      <KeyboardAvoidingView behavior="padding" style={styles.container}>
+      <KeyboardAwareScrollView extraScrollHeight={extraScrollHeightPlatform} enableOnAndroid={true}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={styles.container}>
           <View style={styles.viewContainer}>
             <Text style={styleConst.inputTextFieldLabel}>Company Name:</Text>
@@ -51,7 +54,7 @@ const CompanyRegisterScreen = ({ navigation }) => {
             <ButtonCustom style="register" onPress={validateRegister} />
           </View>
         </TouchableWithoutFeedback>
-      </KeyboardAvoidingView>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
 
   );
