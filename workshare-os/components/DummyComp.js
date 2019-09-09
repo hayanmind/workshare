@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Stylesheet } from 'react-native';
 
 const Dummy = () => {
-  return(
+  return (
     <Text style={styles.container}>Dummy Dummy Dummy</Text>
   );
 };

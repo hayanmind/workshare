@@ -11,25 +11,25 @@ const ProfileScreen = ({ navigation }) => {
     navigation.navigate(routeName)
   };
 
-  return(
+  return (
     <ScrollView style={styles.container}>
-      <StatusBar barStyle="light-content"/>
+      <StatusBar barStyle="light-content" />
       <View style={styles.buttonContainer}>
         <Text style={styles.buttonLabel}>Users Name</Text>
-        <SettingsButton text='My account' iconPath={dummyPicuture} onPress={() => navigator('MyAccount')}/>
-        <SettingsButton text='Change Email' iconPath={dummyPicuture} onPress={() => navigator('ChangeEmail')}/>
-        <SettingsButton text='Change password' iconPath={dummyPicuture} onPress={() => navigator('ChangePassword')}/>
+        <SettingsButton text='My account' iconPath={dummyPicuture} onPress={() => navigator('MyAccount')} />
+        <SettingsButton text='Change Email' iconPath={dummyPicuture} onPress={() => navigator('ChangeEmail')} />
+        <SettingsButton text='Change password' iconPath={dummyPicuture} onPress={() => navigator('ChangePassword')} />
       </View>
       <View style={styles.buttonContainerCompany}>
         <Text style={styles.buttonLabel}>Company</Text>
-        <SettingsButton text='Leaves' iconPath={dummyPicuture} onPress={() => navigator('Leaves')}/>
-        <SettingsButton text='Wage' iconPath={dummyPicuture} onPress={() => navigator('Wage')}/>
+        <SettingsButton text='Leaves' iconPath={dummyPicuture} onPress={() => navigator('Leaves')} />
+        <SettingsButton text='Wage' iconPath={dummyPicuture} onPress={() => navigator('Wage')} />
       </View>
       <View style={styles.buttonContainer}>
         <Text style={styles.buttonLabel}>Settings</Text>
-        <SettingsButton text='Settings' iconPath={dummyPicuture} onPress={() => navigator('Settings')}/>
-        <SettingsButton text='Switch Company' iconPath={dummyPicuture} onPress={() => navigator('SwitchCompany')}/>
-        <SettingsButton text='Log out' iconPath={dummyPicuture} onPress={() => alert('navigation comes later')}/>
+        <SettingsButton text='Settings' iconPath={dummyPicuture} onPress={() => navigator('Settings')} />
+        <SettingsButton text='Switch Company' iconPath={dummyPicuture} onPress={() => navigator('SwitchCompany')} />
+        <SettingsButton text='Log out' iconPath={dummyPicuture} onPress={() => alert('navigation comes later')} />
       </View>
     </ScrollView>
   );

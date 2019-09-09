@@ -3,22 +3,22 @@ import { Text, View, StyleSheet, TouchableHighlight } from 'react-native';
 import constantColor from '../constants/Colors';
 
 const ClockInOutButton = () => {
-  
+
   const [isClockedIn, setIsClockedIn] = useState(false);
-  
+
   const handleOnPress = () => {
     setIsClockedIn(!isClockedIn);
   };
 
-  return(
+  return (
     <View style={styles.container}>
-      <TouchableHighlight 
-        style={[styles.button, 
-        {backgroundColor: (isClockedIn)? constantColor.logoutColor : constantColor.loginColor}]} 
+      <TouchableHighlight
+        style={[styles.button,
+        { backgroundColor: (isClockedIn) ? constantColor.logoutColor : constantColor.loginColor }]}
         onPress={handleOnPress}
-        underlayColor={(isClockedIn)? constantColor.logoutColorOpacity : constantColor.loginColorOpacity}
+        underlayColor={(isClockedIn) ? constantColor.logoutColorOpacity : constantColor.loginColorOpacity}
       >
-        <Text style={styles.text}>{(isClockedIn)? "clock out" : "clock in"}</Text>
+        <Text style={styles.text}>{(isClockedIn) ? "clock out" : "clock in"}</Text>
       </TouchableHighlight>
     </View>
   );

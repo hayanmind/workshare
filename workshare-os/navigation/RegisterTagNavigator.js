@@ -52,15 +52,16 @@ const tabNavigator = createMaterialTopTabNavigator({
   CompanyStack: CompanyStack,
 },
   {
-  tabBarOptions: {
-    style: {
-      backgroundColor: constantColor.mainColor,
-    },
-    indicatorStyle: {
-      borderBottomColor: '#ffffff',
-      borderBottomWidth: 2,
-    },
-  }}
+    tabBarOptions: {
+      style: {
+        backgroundColor: constantColor.mainColor,
+      },
+      indicatorStyle: {
+        borderBottomColor: '#ffffff',
+        borderBottomWidth: 2,
+      },
+    }
+  }
 );
 
 tabNavigator.path = '';

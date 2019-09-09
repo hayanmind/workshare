@@ -4,24 +4,24 @@ import constantColor from '../constants/Colors';
 import { Ionicons } from '@expo/vector-icons';
 
 const LeaveButton = () => {
-  
+
   const [isLeavePressed, setLeavePressed] = useState(false);
-  
+
   const handleLeavePress = () => {
     setLeavePressed(!isLeavePressed);
   };
 
-  return(
+  return (
     <View style={styles.container}>
-      <TouchableHighlight 
+      <TouchableHighlight
         style={[styles.button,
-        {backgroundColor: constantColor.lightGrayColor}]}
+        { backgroundColor: constantColor.lightGrayColor }]}
         onPress={handleLeavePress}
         underlayColor={constantColor.lightGrayColorOpacity}
       >
         <View style={styles.iconContainer}>
           <Ionicons name="ios-airplane" size={70} color="#fff" />
-          <Text style={styles.text}>{(isLeavePressed)? "close" : "open leave modal"}</Text>
+          <Text style={styles.text}>{(isLeavePressed) ? "close" : "open leave modal"}</Text>
         </View>
       </TouchableHighlight>
     </View>
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  iconContainer:{
+  iconContainer: {
     alignItems: 'center',
   },
   text: {

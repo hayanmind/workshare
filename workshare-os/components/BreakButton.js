@@ -4,24 +4,24 @@ import constantColor from '../constants/Colors';
 import { Ionicons } from '@expo/vector-icons';
 
 const BreakButton = () => {
-  
+
   const [isOnBreak, setIsOnBreak] = useState(false);
-  
+
   const handleBreakPress = () => {
     setIsOnBreak(!isOnBreak);
   };
 
-  return(
+  return (
     <View style={styles.container}>
-      <TouchableHighlight 
-        style={[styles.button, 
-        {backgroundColor: (isOnBreak)? constantColor.breakColor : constantColor.lightGrayColor}]} 
+      <TouchableHighlight
+        style={[styles.button,
+        { backgroundColor: (isOnBreak) ? constantColor.breakColor : constantColor.lightGrayColor }]}
         onPress={handleBreakPress}
-        underlayColor={(isOnBreak)? constantColor.breakColorOpacity : constantColor.lightGrayColorOpacity}
+        underlayColor={(isOnBreak) ? constantColor.breakColorOpacity : constantColor.lightGrayColorOpacity}
       >
         <View style={styles.iconContainer}>
           <Ionicons name="ios-cafe" size={70} color="#fff" />
-          <Text style={styles.text}>{(isOnBreak)? "end break" : "break"}</Text>
+          <Text style={styles.text}>{(isOnBreak) ? "end break" : "break"}</Text>
         </View>
       </TouchableHighlight>
     </View>
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  iconContainer:{
+  iconContainer: {
     alignItems: 'center',
   },
   text: {

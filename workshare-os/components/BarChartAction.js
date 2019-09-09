@@ -4,16 +4,16 @@ import constantColor from '../constants/Colors';
 import { AntDesign } from '@expo/vector-icons';
 
 const BarChartAction = () => {
-  
+
   const handleBarChartPress = () => {
-    
+
   };
 
-  return(
+  return (
     <View style={styles.container}>
-      <TouchableHighlight 
+      <TouchableHighlight
         style={[styles.button,
-        {backgroundColor: constantColor.lightGrayColor}]}
+        { backgroundColor: constantColor.lightGrayColor }]}
         onPress={handleBarChartPress}
         underlayColor={constantColor.lightGrayColorOpacity}
       >
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  barChartLayout:{
+  barChartLayout: {
     flex: 2,
   },
   text: {

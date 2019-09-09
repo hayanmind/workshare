@@ -18,7 +18,7 @@ const UserRegisterScreen = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"} />
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <KeyboardAwareScrollView extraScrollHeight={extraScrollHeightPlatform} enableOnAndroid={true} style={{ flexGrow: 1 }}>
+        <KeyboardAwareScrollView extraScrollHeight={extraScrollHeightPlatform} enableOnAndroid={true}>
           <View style={styles.viewContainer}>
             <Text style={styleConst.inputTextFieldLabel}>First Name:</Text>
             <TextInput

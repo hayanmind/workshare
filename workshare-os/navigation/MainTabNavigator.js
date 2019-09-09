@@ -91,14 +91,15 @@ const tabNavigator = createBottomTabNavigator({
   ProfileStack: ProfileStack,
 },
   {
-  tabBarOptions: {
-    style: {
-      backgroundColor: constantColor.mainColor,
-    },
-    labelStyle: {
-      color: '#ffffff',
-    },
-  }}
+    tabBarOptions: {
+      style: {
+        backgroundColor: constantColor.mainColor,
+      },
+      labelStyle: {
+        color: '#ffffff',
+      },
+    }
+  }
 );
 
 tabNavigator.path = '';

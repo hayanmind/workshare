@@ -5,13 +5,13 @@ const SwitchCompanyScreen = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"}/>
+      <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"} />
       <Text>Hello I'm a switch company screen</Text>
     </View>
   );
 }
 
-SwitchCompanyScreen.navigationOptions =  {
+SwitchCompanyScreen.navigationOptions = {
   title: 'SwitchCompany',
 };
 
