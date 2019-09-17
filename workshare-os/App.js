@@ -7,18 +7,13 @@ import { Ionicons } from '@expo/vector-icons';
 
 import AppNavigator from './navigation/AppNavigator';
 
+import ApiKeys from './constants/ApiKeys';
 import * as firebase from 'firebase';
 
-// Initialize Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyDNCAU82di4OY15Anajzxvg2350jsNovXQ",
-  authDomain: "workshare-os.firebaseapp.com",
-  databaseURL: "https://workshare-os.firebaseio.com",
-  projectId: "workshare-os",
-  storageBucket: "",
-};
-
-firebase.initializeApp(firebaseConfig);
+// Initializing firebase
+if (!firebase.apps.length) {
+  firebase.initializeApp(ApiKeys.FirebaseConfig);
+}
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
