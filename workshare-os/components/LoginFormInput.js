@@ -1,13 +1,22 @@
-import React from 'react';
-import { View, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { Alert, View, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import styleConst from '../constants/Layout';
+import * as firebase from 'firebase';
 
 const LoginFormInput = ({ navigation }) => {
 
-  // function name is more suitable when real login function is on
+  const [emailAddress, setEmailAddress] = useState('');
+  const [password, setPassword] = useState('');
+
   const validateLogin = () => {
-    navigation.navigate('Main')
+    firebase.auth().signInWithEmailAndPassword(emailAddress, password)
+      .then(() => {
+        navigation.navigate('Main');
+      }, (error) => {
+        Alert.alert(error.message);
+        setPassword('');
+      });
   }
 
   return (
@@ -19,6 +28,8 @@ const LoginFormInput = ({ navigation }) => {
         placeholderTextColor="rgba(255, 255, 255, 0.5)"
         returnKeyType="next"
         onSubmitEditing={() => this.passwordInput.focus()}
+        onChangeText={(text) => setEmailAddress(text)}
+        value={emailAddress}
         keyboardType="email-address"
         autoCapitalize="none"
         autoCorrect={false}
@@ -31,6 +42,8 @@ const LoginFormInput = ({ navigation }) => {
         returnKeyType="go"
         secureTextEntry
         onSubmitEditing={validateLogin}
+        onChangeText={(text) => setPassword(text)}
+        value={password}
         ref={(input) => { this.passwordInput = input }}
       />
       <TouchableOpacity style={styles.loginButtonContainer} onPress={validateLogin}>
