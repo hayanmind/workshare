@@ -32,8 +32,8 @@ const UserRegisterScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"} />
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <KeyboardAwareScrollView extraScrollHeight={extraScrollHeightPlatform} enableOnAndroid={true}>
+      <KeyboardAwareScrollView extraScrollHeight={extraScrollHeightPlatform} enableOnAndroid={true} keyboardShouldPersistTaps={'handled'}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.viewContainer}>
             <Text style={styleConst.inputTextFieldLabel}>First Name:</Text>
             <TextInput
@@ -92,10 +92,12 @@ const UserRegisterScreen = ({ navigation }) => {
               ref={(input) => { this.userPasswordInputAgain = input }}
               style={styleConst.inputTextField}
             />
-            <ButtonCustom style="register" onPress={validateRegister} />
           </View>
-        </KeyboardAwareScrollView>
-      </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback>
+        <View style={{ paddingHorizontal: 20 }}>
+          <ButtonCustom style="register" onPress={validateRegister} />
+        </View>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 }
@@ -107,7 +109,9 @@ const styles = StyleSheet.create({
   },
   viewContainer: {
     flex: 1,
-    padding: 20,
+    // padding: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
   },
   registerButtonContainer: {
     backgroundColor: '#3498db',
