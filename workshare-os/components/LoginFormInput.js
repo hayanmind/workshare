@@ -1,41 +1,59 @@
-import React from 'react';
-import { View, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { Alert, View, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Text, StyleSheet } from 'react-native';
+import ButtonCustom from '../components/ButtonCustom';
 import { withNavigation } from 'react-navigation';
 import styleConst from '../constants/Layout';
+import * as firebase from 'firebase';
 
 const LoginFormInput = ({ navigation }) => {
 
-  // function name is more suitable when real login function is on
+  const [emailAddress, setEmailAddress] = useState('');
+  const [password, setPassword] = useState('');
+
   const validateLogin = () => {
-    navigation.navigate('Main')
+    firebase.auth().signInWithEmailAndPassword(emailAddress, password)
+      .then(() => {
+        navigation.navigate('Main');
+      }, (error) => {
+        Alert.alert(error.message);
+        setPassword('');
+      });
   }
+
+  const extraScrollHeightPlatform = (Platform.OS === 'ios' ? 70 : 120);
 
   return (
     <View style={styles.container}>
-      <Text style={styleConst.inputTextFieldLabel}>Email address:</Text>
-      <TextInput
-        style={styleConst.inputTextField}
-        placeholder="example@domain.com"
-        placeholderTextColor="rgba(255, 255, 255, 0.5)"
-        returnKeyType="next"
-        onSubmitEditing={() => this.passwordInput.focus()}
-        keyboardType="email-address"
-        autoCapitalize="none"
-        autoCorrect={false}
-      />
-      <Text style={styleConst.inputTextFieldLabel}>Password:</Text>
-      <TextInput
-        style={styleConst.inputTextField}
-        placeholder="********"
-        placeholderTextColor="rgba(255, 255, 255, 0.5)"
-        returnKeyType="go"
-        secureTextEntry
-        onSubmitEditing={validateLogin}
-        ref={(input) => { this.passwordInput = input }}
-      />
-      <TouchableOpacity style={styles.loginButtonContainer} onPress={validateLogin}>
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
+      <TouchableWithoutFeedback extraScrollHeight={extraScrollHeightPlatform} onPress={Keyboard.dismiss} style={styles.container}>
+        <View>
+          <Text style={styleConst.inputTextFieldLabel}>Email address:</Text>
+          <TextInput
+            style={styleConst.inputTextField}
+            placeholder="example@domain.com"
+            placeholderTextColor="rgba(255, 255, 255, 0.5)"
+            returnKeyType="next"
+            onSubmitEditing={() => this.passwordInput.focus()}
+            onChangeText={(text) => setEmailAddress(text)}
+            value={emailAddress}
+            keyboardType="email-address"
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
+          <Text style={styleConst.inputTextFieldLabel}>Password:</Text>
+          <TextInput
+            style={styleConst.inputTextField}
+            placeholder="********"
+            placeholderTextColor="rgba(255, 255, 255, 0.5)"
+            returnKeyType="go"
+            secureTextEntry
+            onSubmitEditing={validateLogin}
+            onChangeText={(text) => setPassword(text)}
+            value={password}
+            ref={(input) => { this.passwordInput = input }}
+          />
+        </View>
+      </TouchableWithoutFeedback>
+      <ButtonCustom style="login" onPress={validateLogin} buttonText="Login" />
     </View>
   );
 };

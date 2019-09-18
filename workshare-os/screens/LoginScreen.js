@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, SafeAreaView, StatusBar, TouchableWithoutFeedback, TouchableOpacity, Keyboard, Text, Image, StyleSheet } from 'react-native';
+import { View, SafeAreaView, StatusBar, TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
 import LoginFormInput from '../components/LoginFormInput';
 import colorConstant from '../constants/Colors';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -8,19 +8,17 @@ const LoginScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" />
-      <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }} enableOnAndroid={true}>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={styles.container}>
-          <View style={styles.container}>
-            <View style={styles.logoContainer}>
-              <Image
-                style={styles.logo}
-                source={require('../assets/images/LOGO.png')}
-              />
-              <Text style={styles.title}>Share your working hours and status with colleagues.</Text>
-            </View>
-            <LoginFormInput />
+      <KeyboardAwareScrollView contentContainerStyle={{ flex: 1 }} enableOnAndroid={true} keyboardShouldPersistTaps={'handled'}>
+        <View style={styles.container}>
+          <View style={styles.logoContainer}>
+            <Image
+              style={styles.logo}
+              source={require('../assets/images/LOGO.png')}
+            />
+            <Text style={styles.title}>Share your working hours and status with colleagues.</Text>
           </View>
-        </TouchableWithoutFeedback>
+          <LoginFormInput />
+        </View>
       </KeyboardAwareScrollView>
       <TouchableOpacity style={styles.registerButtonContainer} onPress={() => navigation.navigate('Register')}>
         <Text style={styles.registerText}>No account?

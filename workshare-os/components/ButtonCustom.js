@@ -6,6 +6,7 @@ const ButtonCustom = (props) => {
   const {
     style = {},
     onPress,
+    buttonText,
   } = props;
 
   const buttonColor = (style === 'login')
@@ -16,13 +17,13 @@ const ButtonCustom = (props) => {
 
   return (
     <TouchableOpacity style={buttonColor} onPress={onPress}>
-      <Text style={styles.buttonText}>Register</Text>
+      <Text style={styles.text}>{buttonText}</Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  buttonText: {
+  text: {
     fontWeight: '700',
     textAlign: 'center',
     color: '#fff',

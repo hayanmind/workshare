@@ -1,15 +1,35 @@
-import React from 'react';
-import { View, SafeAreaView, StatusBar, Platform, TouchableWithoutFeedback, Keyboard, Text, TextInput, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, SafeAreaView, StatusBar, Platform, TouchableWithoutFeedback, Keyboard, Text, TextInput, Alert, StyleSheet } from 'react-native';
 import colorConstant from '../constants/Colors';
 import styleConst from '../constants/Layout';
 import ButtonCustom from '../components/ButtonCustom';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import * as firebase from 'firebase';
 
 const UserRegisterScreen = ({ navigation }) => {
 
-  // now it leads the user to login screen but later it should call register function
+  const [emailAddress, setEmailAddress] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
+
   const validateRegister = () => {
-    navigation.navigate('Login');
+    if (password !== passwordConfirm) {
+      Alert.alert("Passwords do not match.");
+      setPassword('');
+      setPasswordConfirm('');
+      return;
+    }
+    firebase.auth().createUserWithEmailAndPassword(emailAddress, password)
+      .then(() => {
+        firebase.auth().signInWithEmailAndPassword(emailAddress, password)
+          .then(() => {
+            navigation.navigate('Main');
+          }, (error) => {
+            Alert.alert(error.message);
+          })
+      }, (error) => {
+        Alert.alert(error.message);
+      });
   };
 
   const extraScrollHeightPlatform = (Platform.OS === 'ios' ? 70 : 120);
@@ -17,8 +37,8 @@ const UserRegisterScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"} />
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <KeyboardAwareScrollView extraScrollHeight={extraScrollHeightPlatform} enableOnAndroid={true}>
+      <KeyboardAwareScrollView extraScrollHeight={extraScrollHeightPlatform} enableOnAndroid={true} keyboardShouldPersistTaps={'handled'}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.viewContainer}>
             <Text style={styleConst.inputTextFieldLabel}>First Name:</Text>
             <TextInput
@@ -46,6 +66,8 @@ const UserRegisterScreen = ({ navigation }) => {
               placeholderTextColor="rgba(255, 255, 255, 0.5)"
               returnKeyType="next"
               onSubmitEditing={() => this.userPasswordInput.focus()}
+              onChangeText={(text) => setEmailAddress(text)}
+              value={emailAddress}
               ref={(input) => { this.userEmailAddress = input; }}
               keyboardType="email-address"
               autoCapitalize="none"
@@ -58,6 +80,8 @@ const UserRegisterScreen = ({ navigation }) => {
               returnKeyType="next"
               secureTextEntry
               onSubmitEditing={() => this.userPasswordInputAgain.focus()}
+              onChangeText={(text) => setPassword(text)}
+              value={password}
               ref={(input) => { this.userPasswordInput = input; }}
               style={styleConst.inputTextField}
             />
@@ -68,13 +92,17 @@ const UserRegisterScreen = ({ navigation }) => {
               returnKeyType="go"
               secureTextEntry
               onSubmitEditing={validateRegister}
+              onChangeText={(text) => setPasswordConfirm(text)}
+              value={passwordConfirm}
               ref={(input) => { this.userPasswordInputAgain = input }}
               style={styleConst.inputTextField}
             />
-            <ButtonCustom style="register" onPress={validateRegister} />
           </View>
-        </KeyboardAwareScrollView>
-      </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback>
+        <View style={{ paddingHorizontal: 20 }}>
+          <ButtonCustom style="register" onPress={validateRegister} buttonText="Register" />
+        </View>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 }
@@ -86,7 +114,8 @@ const styles = StyleSheet.create({
   },
   viewContainer: {
     flex: 1,
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
   },
   registerButtonContainer: {
     backgroundColor: '#3498db',

@@ -16,7 +16,7 @@ const CompanyRegisterScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={Platform.OS === 'ios' ? "dark-content" : "light-content"} />
-      <KeyboardAwareScrollView extraScrollHeight={extraScrollHeightPlatform} enableOnAndroid={true}>
+      <KeyboardAwareScrollView extraScrollHeight={extraScrollHeightPlatform} enableOnAndroid={true} keyboardShouldPersistTaps={'handled'}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={styles.container}>
           <View style={styles.viewContainer}>
             <Text style={styleConst.inputTextFieldLabel}>Company Name:</Text>
@@ -51,7 +51,7 @@ const CompanyRegisterScreen = ({ navigation }) => {
               ref={(input) => { this.companyPasswordInput = input }}
               style={styleConst.inputTextField}
             />
-            <ButtonCustom style="register" onPress={validateRegister} />
+            <ButtonCustom style="register" onPress={validateRegister} buttonText="Register" />
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAwareScrollView>
