@@ -109,7 +109,6 @@ const styles = StyleSheet.create({
   },
   viewContainer: {
     flex: 1,
-    // padding: 20,
     paddingHorizontal: 20,
     paddingVertical: 10,
   },

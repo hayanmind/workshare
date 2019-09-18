@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Alert, View, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import ButtonCustom from '../components/ButtonCustom';
 import { withNavigation } from 'react-navigation';
 import styleConst from '../constants/Layout';
 import * as firebase from 'firebase';
@@ -49,6 +50,7 @@ const LoginFormInput = ({ navigation }) => {
       <TouchableOpacity style={styles.loginButtonContainer} onPress={validateLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
+      <ButtonCustom style="login" onPress={validateLogin} buttonText="Login" />
     </View>
   );
 };
