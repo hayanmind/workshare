@@ -95,7 +95,7 @@ const UserRegisterScreen = ({ navigation }) => {
           </View>
         </TouchableWithoutFeedback>
         <View style={{ paddingHorizontal: 20 }}>
-          <ButtonCustom style="register" onPress={validateRegister} />
+          <ButtonCustom style="register" onPress={validateRegister} buttonText="Register" />
         </View>
       </KeyboardAwareScrollView>
     </SafeAreaView>
