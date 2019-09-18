@@ -21,7 +21,12 @@ const UserRegisterScreen = ({ navigation }) => {
     }
     firebase.auth().createUserWithEmailAndPassword(emailAddress, password)
       .then(() => {
-        navigation.navigate('Login');
+        firebase.auth().signInWithEmailAndPassword(emailAddress, password)
+          .then(() => {
+            navigation.navigate('Main');
+          }, (error) => {
+            Alert.alert(error.message);
+          })
       }, (error) => {
         Alert.alert(error.message);
       });
