@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, View, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard, Text, StyleSheet } from 'react-native';
+import { Alert, View, TextInput, TouchableWithoutFeedback, Keyboard, Text, StyleSheet } from 'react-native';
 import ButtonCustom from '../components/ButtonCustom';
 import { withNavigation } from 'react-navigation';
 import styleConst from '../constants/Layout';
@@ -16,7 +16,6 @@ const LoginFormInput = ({ navigation }) => {
         navigation.navigate('Main');
       }, (error) => {
         Alert.alert(error.message);
-        setPassword('');
       });
   }
 
@@ -38,6 +37,7 @@ const LoginFormInput = ({ navigation }) => {
             keyboardType="email-address"
             autoCapitalize="none"
             autoCorrect={false}
+            clearButtonMode="always"
           />
           <Text style={styleConst.inputTextFieldLabel}>Password:</Text>
           <TextInput
@@ -50,10 +50,11 @@ const LoginFormInput = ({ navigation }) => {
             onChangeText={(text) => setPassword(text)}
             value={password}
             ref={(input) => { this.passwordInput = input }}
+            clearButtonMode="always"
           />
+          <ButtonCustom style="login" onPress={validateLogin} buttonText="Login" />
         </View>
       </TouchableWithoutFeedback>
-      <ButtonCustom style="login" onPress={validateLogin} buttonText="Login" />
     </View>
   );
 };

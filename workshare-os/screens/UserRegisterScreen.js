@@ -15,8 +15,6 @@ const UserRegisterScreen = ({ navigation }) => {
   const validateRegister = () => {
     if (password !== passwordConfirm) {
       Alert.alert("Passwords do not match.");
-      setPassword('');
-      setPasswordConfirm('');
       return;
     }
     firebase.auth().createUserWithEmailAndPassword(emailAddress, password)
@@ -72,6 +70,7 @@ const UserRegisterScreen = ({ navigation }) => {
               keyboardType="email-address"
               autoCapitalize="none"
               autoCorrect={false}
+              clearButtonMode="always"
             />
             <Text style={styleConst.inputTextFieldLabel}>Password:</Text>
             <TextInput
@@ -84,6 +83,7 @@ const UserRegisterScreen = ({ navigation }) => {
               value={password}
               ref={(input) => { this.userPasswordInput = input; }}
               style={styleConst.inputTextField}
+              clearButtonMode="always"
             />
             <Text style={styleConst.inputTextFieldLabel}>Password Again:</Text>
             <TextInput
@@ -96,12 +96,11 @@ const UserRegisterScreen = ({ navigation }) => {
               value={passwordConfirm}
               ref={(input) => { this.userPasswordInputAgain = input }}
               style={styleConst.inputTextField}
+              clearButtonMode="always"
             />
+            <ButtonCustom style="register" onPress={validateRegister} buttonText="Register" />
           </View>
         </TouchableWithoutFeedback>
-        <View style={{ paddingHorizontal: 20 }}>
-          <ButtonCustom style="register" onPress={validateRegister} buttonText="Register" />
-        </View>
       </KeyboardAwareScrollView>
     </SafeAreaView>
   );

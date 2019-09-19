@@ -40,6 +40,7 @@ const CompanyRegisterScreen = ({ navigation }) => {
               keyboardType="email-address"
               autoCapitalize="none"
               autoCorrect={false}
+              clearButtonMode="always"
             />
             <Text style={styleConst.inputTextFieldLabel}>Password:</Text>
             <TextInput
@@ -50,6 +51,7 @@ const CompanyRegisterScreen = ({ navigation }) => {
               onSubmitEditing={validateRegister}
               ref={(input) => { this.companyPasswordInput = input }}
               style={styleConst.inputTextField}
+              clearButtonMode="always"
             />
             <ButtonCustom style="register" onPress={validateRegister} buttonText="Register" />
           </View>
