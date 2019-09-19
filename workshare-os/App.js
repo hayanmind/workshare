@@ -11,7 +11,9 @@ import ApiKeys from './constants/ApiKeys';
 import * as firebase from 'firebase';
 
 // Initializing firebase
-if (!firebase.apps.length) {
+const firebaseAppsNotInitialized = (firebase.apps.length === 0);
+
+if (firebaseAppsNotInitialized) {
   firebase.initializeApp(ApiKeys.FirebaseConfig);
 }
 

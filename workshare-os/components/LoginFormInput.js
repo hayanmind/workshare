@@ -32,7 +32,7 @@ const LoginFormInput = ({ navigation }) => {
             placeholderTextColor="rgba(255, 255, 255, 0.5)"
             returnKeyType="next"
             onSubmitEditing={() => this.passwordInput.focus()}
-            onChangeText={(text) => setEmailAddress(text)}
+            onChangeText={setEmailAddress}
             value={emailAddress}
             keyboardType="email-address"
             autoCapitalize="none"
@@ -47,7 +47,7 @@ const LoginFormInput = ({ navigation }) => {
             returnKeyType="go"
             secureTextEntry
             onSubmitEditing={validateLogin}
-            onChangeText={(text) => setPassword(text)}
+            onChangeText={setPassword}
             value={password}
             ref={(input) => { this.passwordInput = input }}
             clearButtonMode="always"

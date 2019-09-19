@@ -19,7 +19,7 @@ const UserRegisterScreen = ({ navigation }) => {
     }
     firebase.auth().createUserWithEmailAndPassword(emailAddress, password)
       .then(() => {
-        firebase.auth().signInWithEmailAndPassword(emailAddress, password)
+        return firebase.auth().signInWithEmailAndPassword(emailAddress, password)
           .then(() => {
             navigation.navigate('Main');
           }, (error) => {
@@ -64,7 +64,7 @@ const UserRegisterScreen = ({ navigation }) => {
               placeholderTextColor="rgba(255, 255, 255, 0.5)"
               returnKeyType="next"
               onSubmitEditing={() => this.userPasswordInput.focus()}
-              onChangeText={(text) => setEmailAddress(text)}
+              onChangeText={setEmailAddress}
               value={emailAddress}
               ref={(input) => { this.userEmailAddress = input; }}
               keyboardType="email-address"
@@ -79,7 +79,7 @@ const UserRegisterScreen = ({ navigation }) => {
               returnKeyType="next"
               secureTextEntry
               onSubmitEditing={() => this.userPasswordInputAgain.focus()}
-              onChangeText={(text) => setPassword(text)}
+              onChangeText={setPassword}
               value={password}
               ref={(input) => { this.userPasswordInput = input; }}
               style={styleConst.inputTextField}
@@ -92,7 +92,7 @@ const UserRegisterScreen = ({ navigation }) => {
               returnKeyType="go"
               secureTextEntry
               onSubmitEditing={validateRegister}
-              onChangeText={(text) => setPasswordConfirm(text)}
+              onChangeText={setPasswordConfirm}
               value={passwordConfirm}
               ref={(input) => { this.userPasswordInputAgain = input }}
               style={styleConst.inputTextField}
