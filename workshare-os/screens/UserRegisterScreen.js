@@ -15,13 +15,11 @@ const UserRegisterScreen = ({ navigation }) => {
   const validateRegister = () => {
     if (password !== passwordConfirm) {
       Alert.alert("Passwords do not match.");
-      setPassword('');
-      setPasswordConfirm('');
       return;
     }
     firebase.auth().createUserWithEmailAndPassword(emailAddress, password)
       .then(() => {
-        firebase.auth().signInWithEmailAndPassword(emailAddress, password)
+        return firebase.auth().signInWithEmailAndPassword(emailAddress, password)
           .then(() => {
             navigation.navigate('Main');
           }, (error) => {
@@ -66,12 +64,13 @@ const UserRegisterScreen = ({ navigation }) => {
               placeholderTextColor="rgba(255, 255, 255, 0.5)"
               returnKeyType="next"
               onSubmitEditing={() => this.userPasswordInput.focus()}
-              onChangeText={(text) => setEmailAddress(text)}
+              onChangeText={setEmailAddress}
               value={emailAddress}
               ref={(input) => { this.userEmailAddress = input; }}
               keyboardType="email-address"
               autoCapitalize="none"
               autoCorrect={false}
+              clearButtonMode="always"
             />
             <Text style={styleConst.inputTextFieldLabel}>Password:</Text>
             <TextInput
@@ -80,10 +79,11 @@ const UserRegisterScreen = ({ navigation }) => {
               returnKeyType="next"
               secureTextEntry
               onSubmitEditing={() => this.userPasswordInputAgain.focus()}
-              onChangeText={(text) => setPassword(text)}
+              onChangeText={setPassword}
               value={password}
               ref={(input) => { this.userPasswordInput = input; }}
               style={styleConst.inputTextField}
+              clearButtonMode="always"
             />
             <Text style={styleConst.inputTextFieldLabel}>Password Again:</Text>
             <TextInput
@@ -92,16 +92,15 @@ const UserRegisterScreen = ({ navigation }) => {
               returnKeyType="go"
               secureTextEntry
               onSubmitEditing={validateRegister}
-              onChangeText={(text) => setPasswordConfirm(text)}
+              onChangeText={setPasswordConfirm}
               value={passwordConfirm}
               ref={(input) => { this.userPasswordInputAgain = input }}
               style={styleConst.inputTextField}
+              clearButtonMode="always"
             />
+            <ButtonCustom style="register" onPress={validateRegister} buttonText="Register" />
           </View>
         </TouchableWithoutFeedback>
-        <View style={{ paddingHorizontal: 20 }}>
-          <ButtonCustom style="register" onPress={validateRegister} buttonText="Register" />
-        </View>
       </KeyboardAwareScrollView>
     </SafeAreaView>
   );
