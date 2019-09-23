@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Text, View, StyleSheet, TouchableHighlight, Alert } from 'react-native';
 import useDidUpdateEffect from '../customHook/useDidUpdateEffect';
 import constantColor from '../constants/Colors';
