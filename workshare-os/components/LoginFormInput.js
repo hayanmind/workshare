@@ -11,12 +11,13 @@ const LoginFormInput = ({ navigation }) => {
   const [password, setPassword] = useState('');
 
   const validateLogin = () => {
-    firebase.auth().signInWithEmailAndPassword(emailAddress, password)
-      .then(() => {
-        navigation.navigate('Main');
-      }, (error) => {
-        Alert.alert(error.message);
-      });
+    // firebase.auth().signInWithEmailAndPassword(emailAddress, password)
+    //   .then(() => {
+    //     navigation.navigate('Main');
+    //   }, (error) => {
+    //     Alert.alert(error.message);
+    //   });
+    navigation.navigate('Main');
   }
 
   const extraScrollHeightPlatform = (Platform.OS === 'ios' ? 70 : 120);
