@@ -13,7 +13,7 @@ const ClockInOutButton = () => {
   const [longitude, setLongitude] = useState(0);
   const [timestamp, setTimestamp] = useState(0);
   const [userId, setUserId] = useState('');
-  const [isLocationUpdated, setIsLocationUpdated] = useState(false);
+  const [isClockInOutButtonPressed, setIsClockInOutButtonPressed] = useState(false);
 
   const db = firebase.firestore();
   firebase.auth().onAuthStateChanged(user => {
@@ -23,7 +23,7 @@ const ClockInOutButton = () => {
   });
 
   useDidUpdateEffect(() => {
-    if (isLocationUpdated === true) {
+    if (isClockInOutButtonPressed === true) {
       db.collection('events').add({
         additionalInfo: {
           latitude: latitude,
@@ -34,10 +34,10 @@ const ClockInOutButton = () => {
         userId: userId,
       })
         .then(() => {
-          setIsLocationUpdated(false);
+          setIsClockInOutButtonPressed(false);
         });
     }
-  }, [isLocationUpdated]);
+  }, [isClockInOutButtonPressed]);
 
   const _getLocationAsync = async () => {
     const currentLocation = await Location.getCurrentPositionAsync({});
@@ -54,7 +54,7 @@ const ClockInOutButton = () => {
     _getLocationAsync()
       .then(() => {
         setIsClockedIn(!isClockedIn);
-        setIsLocationUpdated(true);
+        setIsClockInOutButtonPressed(true);
       })
       .catch(error => {
         console.log('error :', error);
