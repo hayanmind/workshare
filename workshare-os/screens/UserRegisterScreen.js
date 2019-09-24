@@ -36,7 +36,7 @@ const UserRegisterScreen = ({ navigation }) => {
     })
   };
 
-  const validateRegister = async () => {
+  const validateRegister = () => {
     if ((firstName.length === 0) || (lastName.length === 0)) {
       Alert.alert("Please enter a valid Name.");
       return;
@@ -45,16 +45,10 @@ const UserRegisterScreen = ({ navigation }) => {
       Alert.alert("Passwords do not match.");
       return;
     }
-    await auth.signUp(emailAddress, password)
-      .then(() => {
-        auth.signIn(emailAddress, password);
-      })
-      .then((user) => {
-        addUserToFirestore(user.uid);
-      })
-      .then(() => {
-        navigation.navigate('Main');
-      })
+    auth.signUp(emailAddress, password)
+      .then(() => auth.signIn(emailAddress, password))
+      .then((user) => addUserToFirestore(user.uid))
+      .then(() => navigation.navigate('Main'))
       .catch(error => {
         Alert.alert(error.message);
       });
