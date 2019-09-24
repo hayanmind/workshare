@@ -17,7 +17,7 @@ const LoginFormInput = ({ navigation }) => {
       }, (error) => {
         Alert.alert(error.message);
       });
-  }
+  };
 
   const extraScrollHeightPlatform = (Platform.OS === 'ios' ? 70 : 120);
 
