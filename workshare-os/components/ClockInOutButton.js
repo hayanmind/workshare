@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, TouchableHighlight, Alert } from 'react-native';
 import useDidUpdateEffect from '../customHook/useDidUpdateEffect';
+import { useAuth } from '../customHook/useAuth';
 import constantColor from '../constants/Colors';
-import * as firebase from 'firebase';
-import 'firebase/firestore';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 
@@ -12,26 +11,20 @@ const ClockInOutButton = () => {
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
   const [timestamp, setTimestamp] = useState(0);
-  const [userId, setUserId] = useState('');
   const [isClockInOutButtonPressed, setIsClockInOutButtonPressed] = useState(false);
 
-  const db = firebase.firestore();
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      setUserId(user.uid);
-    }
-  });
+  const auth = useAuth();
 
   useDidUpdateEffect(() => {
     if (isClockInOutButtonPressed === true) {
-      db.collection('events').add({
+      auth.db.collection('events').add({
         additionalInfo: {
           latitude: latitude,
           longitude: longitude,
         },
         createdAt: timestamp,
         type: (isClockedIn) ? 'clocked-in' : 'clocked-out',
-        userId: userId,
+        userId: auth.user.uid,
       })
         .then(() => {
           setIsClockInOutButtonPressed(false);

@@ -2,14 +2,22 @@ import React from 'react';
 import { View, Text, StyleSheet, StatusBar, ScrollView } from 'react-native';
 import constantColor from '../constants/Colors';
 import SettingsButton from '../components/SettingsButton';
+import { useAuth } from '../customHook/useAuth';
 
 const ProfileScreen = ({ navigation }) => {
 
-  const dummyPicuture = require('../assets/images/robot-prod.png');
+  const auth = useAuth();
 
   const navigator = (routeName) => {
     navigation.navigate(routeName)
   };
+
+  const signout = () => {
+    auth.signOut();
+    navigator('Login');
+  }
+
+  const dummyPicuture = require('../assets/images/robot-prod.png');
 
   return (
     <ScrollView style={styles.container}>
@@ -29,7 +37,7 @@ const ProfileScreen = ({ navigation }) => {
         <Text style={styles.buttonLabel}>Settings</Text>
         <SettingsButton text='Settings' iconPath={dummyPicuture} onPress={() => navigator('Settings')} />
         <SettingsButton text='Switch Company' iconPath={dummyPicuture} onPress={() => navigator('SwitchCompany')} />
-        <SettingsButton text='Log out' iconPath={dummyPicuture} onPress={() => alert('navigation comes later')} />
+        <SettingsButton text='Log out' iconPath={dummyPicuture} onPress={() => signout()} />
       </View>
     </ScrollView>
   );

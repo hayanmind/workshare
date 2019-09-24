@@ -4,24 +4,51 @@ import colorConstant from '../constants/Colors';
 import styleConst from '../constants/Layout';
 import ButtonCustom from '../components/ButtonCustom';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import * as firebase from 'firebase';
+import { useAuth } from '../customHook/useAuth';
 
 const UserRegisterScreen = ({ navigation }) => {
 
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastname] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
 
+  const auth = useAuth();
+
+  const addUserToFirestore = (userId) => {
+    auth.db.collection('users').add({
+      name: {
+        firstName: firstName,
+        lastName: lastName,
+      },
+      orgId: "",
+      pushNotiEnabled: false,
+      status: {
+        eventId: "",
+        from: new Date().getTime(),
+        to: "",
+        type: "created",
+      },
+      workHoursWeekly: 0,
+      emailAddress: emailAddress,
+      userId: userId,
+    })
+  };
+
   const validateRegister = () => {
+    if ((firstName.length === 0) || (lastName.length === 0)) {
+      Alert.alert("Please enter a valid Name.");
+      return;
+    }
     if (password !== passwordConfirm) {
       Alert.alert("Passwords do not match.");
       return;
     }
-    firebase.auth().createUserWithEmailAndPassword(emailAddress, password)
-      .then(() => firebase.auth().signInWithEmailAndPassword(emailAddress, password))
-      .then(() => {
-        navigation.navigate('Main');
-      })
+    auth.signUp(emailAddress, password)
+      .then(() => auth.signIn(emailAddress, password))
+      .then((user) => addUserToFirestore(user.uid))
+      .then(() => navigation.navigate('Main'))
       .catch(error => {
         Alert.alert(error.message);
       });
@@ -42,6 +69,8 @@ const UserRegisterScreen = ({ navigation }) => {
               placeholderTextColor="rgba(255, 255, 255, 0.5)"
               returnKeyType="next"
               onSubmitEditing={() => this.userLastName.focus()}
+              onChangeText={setFirstName}
+              value={firstName}
               autoCorrect={false}
             />
             <Text style={styleConst.inputTextFieldLabel}>Last Name:</Text>
@@ -51,6 +80,8 @@ const UserRegisterScreen = ({ navigation }) => {
               placeholderTextColor="rgba(255, 255, 255, 0.5)"
               returnKeyType="next"
               onSubmitEditing={() => this.userEmailAddress.focus()}
+              onChangeText={setLastname}
+              value={lastName}
               ref={(input) => { this.userLastName = input; }}
               autoCorrect={false}
             />

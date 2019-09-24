@@ -3,15 +3,17 @@ import { Alert, View, TextInput, TouchableWithoutFeedback, Keyboard, Text, Style
 import ButtonCustom from '../components/ButtonCustom';
 import { withNavigation } from 'react-navigation';
 import styleConst from '../constants/Layout';
-import * as firebase from 'firebase';
+import { useAuth } from '../customHook/useAuth';
 
 const LoginFormInput = ({ navigation }) => {
 
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
 
+  const auth = useAuth();
+
   const validateLogin = () => {
-    firebase.auth().signInWithEmailAndPassword(emailAddress, password)
+    auth.signIn(emailAddress, password)
       .then(() => {
         navigation.navigate('Main');
       }, (error) => {
