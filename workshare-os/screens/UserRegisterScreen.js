@@ -4,8 +4,7 @@ import colorConstant from '../constants/Colors';
 import styleConst from '../constants/Layout';
 import ButtonCustom from '../components/ButtonCustom';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import * as firebase from 'firebase';
-import 'firebase/firestore';
+import { useAuth } from '../customHook/useAuth';
 
 const UserRegisterScreen = ({ navigation }) => {
 
@@ -14,17 +13,11 @@ const UserRegisterScreen = ({ navigation }) => {
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [userId, setUserId] = useState('');
 
-  const db = firebase.firestore();
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      setUserId(user.uid);
-    }
-  });
+  const auth = useAuth();
 
-  const addUserToFirestore = () => {
-    db.collection('users').add({
+  const addUserToFirestore = (userId) => {
+    auth.db.collection('users').add({
       name: {
         firstName: firstName,
         lastName: lastName,
@@ -43,7 +36,7 @@ const UserRegisterScreen = ({ navigation }) => {
     })
   };
 
-  const validateRegister = () => {
+  const validateRegister = async () => {
     if ((firstName.length === 0) || (lastName.length === 0)) {
       Alert.alert("Please enter a valid Name.");
       return;
@@ -52,11 +45,13 @@ const UserRegisterScreen = ({ navigation }) => {
       Alert.alert("Passwords do not match.");
       return;
     }
-    firebase.auth().createUserWithEmailAndPassword(emailAddress, password)
+    await auth.signUp(emailAddress, password)
       .then(() => {
-        addUserToFirestore();
+        auth.signIn(emailAddress, password);
       })
-      .then(() => firebase.auth().signInWithEmailAndPassword(emailAddress, password))
+      .then((user) => {
+        addUserToFirestore(user.uid);
+      })
       .then(() => {
         navigation.navigate('Main');
       })

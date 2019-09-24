@@ -6,16 +6,7 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import AppNavigator from './navigation/AppNavigator';
-
-import ApiKeys from './constants/ApiKeys';
-import * as firebase from 'firebase';
-
-// Initializing firebase
-const firebaseAppsNotInitialized = (firebase.apps.length === 0);
-
-if (firebaseAppsNotInitialized) {
-  firebase.initializeApp(ApiKeys.FirebaseConfig);
-}
+import { ProvideAuth } from './customHook/useAuth';
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -30,10 +21,12 @@ export default function App(props) {
     );
   } else {
     return (
-      <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-        <AppNavigator />
-      </View>
+      <ProvideAuth>
+        <View style={styles.container}>
+          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+          <AppNavigator />
+        </View>
+      </ProvideAuth>
     );
   }
 }
