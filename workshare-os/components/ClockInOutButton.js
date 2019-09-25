@@ -40,7 +40,7 @@ const ClockInOutButton = () => {
   };
 
   const handleOnPress = async () => {
-    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    const { status } = await Permissions.askAsync(Permissions.LOCATION);
     if (status !== 'granted') {
       Alert.alert("Permission to access location was denied");
     }

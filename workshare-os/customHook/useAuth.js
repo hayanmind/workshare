@@ -17,7 +17,6 @@ if (firebaseAppsNotInitialized) {
   });
 }
 
-
 const db = firebase.firestore();
 
 const authContext = createContext();
