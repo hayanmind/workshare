@@ -16,16 +16,6 @@ const BreakButton = () => {
 
   const auth = useAuth();
 
-  const updateStatus = (status) => {
-    // db.collection('users').doc(auth.user.uid).update({
-    // console.log('id :', auth.user.uid);
-    // const hell = db.collection("users").doc(doc.id).where("userId", "==", auth.user.uid).get();
-    // console.log('hell :', hell);
-    // .update({
-    //   'status.type': status
-    // })
-  };
-
   useDidUpdateEffect(() => {
     if (isBreakButtonPressed === true) {
       auth.db.collection('events').add({
@@ -37,13 +27,16 @@ const BreakButton = () => {
         type: (isOnBreak) ? 'break-start' : 'break-end',
         userId: auth.user.uid,
       })
-        .then(() => {
+        .then((docRef) => {
           setIsBreakButtonPressed(false);
-          updateStatus((isOnBreak) ? 'break-start' : 'break-end');
+          auth.updateUsersStatus(
+            docRef.id,
+            (isOnBreak) ? timestamp : 0,
+            (isOnBreak) ? 0 : timestamp,
+            (isOnBreak) ? 'break-start' : 'break-end');
         });
     }
   }, [isBreakButtonPressed]);
-
 
   const _getLocationAsync = async () => {
     const currentLocation = await Location.getCurrentPositionAsync({});

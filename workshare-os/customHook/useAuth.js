@@ -46,8 +46,8 @@ function useProvideAuth() {
   useDidUpdateEffect(() => {
     db.collection('users').doc(usersStatus.documentId).update({
       'status.eventId': usersStatus.eventId,
-      'status.from' : usersStatus.from,
-      'status.to' : usersStatus.to,
+      'status.from': usersStatus.from,
+      'status.to': usersStatus.to,
       'status.type': usersStatus.statusType,
     })
   }, [usersStatus]);
@@ -99,24 +99,24 @@ function useProvideAuth() {
       });
   };
 
-  const updateUsersStatus = (type) =>{
+  const updateUsersStatus = (eventId, from, to, type) => {
     db.collection('users')
-    .where('userId', '==', user.uid)
-    .get()
-    .then(snapshot => {
-      snapshot.forEach(doc => {
-        setUsersStatus({
-          documentId: doc.id,
-          eventId: '',
-          from: 0,
-          to: 0,
-          statusType: type,
+      .where('userId', '==', user.uid)
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          setUsersStatus({
+            documentId: doc.id,
+            eventId: eventId,
+            from: from,
+            to: to,
+            statusType: type,
+          });
         });
+      })
+      .catch(error => {
+        console.log('Error getting documents', error);
       });
-    })
-    .catch(error => {
-      console.log('Error getting documents', error);
-    });
   }
 
   useEffect(() => {
