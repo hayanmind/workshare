@@ -10,28 +10,29 @@ const LeaveButton = () => {
   const [isLeavePressed, setLeavePressed] = useState(false);
   const [userDocumentId, setUserDocumentId] = useState('');
 
-  useDidUpdateEffect(() => {
-    auth.db.collection('users').doc(userDocumentId).update({
-      'status.type': (isLeavePressed) ? 'yes' : 'no'
-    })
-  }, [userDocumentId]);
+  // useDidUpdateEffect(() => {
+  //   auth.db.collection('users').doc(userDocumentId).update({
+  //     'status.type': (isLeavePressed) ? 'yes' : 'no'
+  //   })
+  // }, [userDocumentId]);
 
   const auth = useAuth();
 
   const handleLeavePress = () => {
     setLeavePressed(!isLeavePressed);
+    auth.updateUsersStatus((isLeavePressed) ? 'yes' : 'no')
 
-    auth.db.collection('users')
-      .where('userId', '==', auth.user.uid)
-      .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
-          setUserDocumentId(doc.id);
-        });
-      })
-      .catch(error => {
-        console.log('Error getting documents', error);
-      });
+    // auth.db.collection('users')
+    //   .where('userId', '==', auth.user.uid)
+    //   .get()
+    //   .then(snapshot => {
+    //     snapshot.forEach(doc => {
+    //       setUserDocumentId(doc.id);
+    //     });
+    //   })
+    //   .catch(error => {
+    //     console.log('Error getting documents', error);
+    //   });
   };
 
   return (

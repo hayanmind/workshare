@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
+import useDidUpdateEffect from './useDidUpdateEffect';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import 'firebase/firestore';
@@ -33,6 +34,23 @@ export const useAuth = () => {
 function useProvideAuth() {
 
   const [user, setUser] = useState(null);
+
+  const [usersStatus, setUsersStatus] = useState({
+    documentId: '',
+    eventId: '',
+    from: 0,
+    to: 0,
+    statusType: '',
+  });
+
+  useDidUpdateEffect(() => {
+    db.collection('users').doc(usersStatus.documentId).update({
+      'status.eventId': usersStatus.eventId,
+      'status.from' : usersStatus.from,
+      'status.to' : usersStatus.to,
+      'status.type': usersStatus.statusType,
+    })
+  }, [usersStatus]);
 
   const signIn = (email, password) => {
     return firebase
@@ -81,6 +99,26 @@ function useProvideAuth() {
       });
   };
 
+  const updateUsersStatus = (type) =>{
+    db.collection('users')
+    .where('userId', '==', user.uid)
+    .get()
+    .then(snapshot => {
+      snapshot.forEach(doc => {
+        setUsersStatus({
+          documentId: doc.id,
+          eventId: '',
+          from: 0,
+          to: 0,
+          statusType: type,
+        });
+      });
+    })
+    .catch(error => {
+      console.log('Error getting documents', error);
+    });
+  }
+
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -99,6 +137,7 @@ function useProvideAuth() {
     signUp,
     signOut,
     sendPasswordResetEmail,
-    confirmPasswordReset
+    confirmPasswordReset,
+    updateUsersStatus,
   };
 }
