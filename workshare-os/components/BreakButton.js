@@ -1,14 +1,63 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, TouchableHighlight } from 'react-native';
+import { Text, View, StyleSheet, TouchableHighlight, Alert } from 'react-native';
+import useDidUpdateEffect from '../customHook/useDidUpdateEffect';
+import { useAuth } from '../customHook/useAuth';
 import constantColor from '../constants/Colors';
+import * as Location from 'expo-location';
+import * as Permissions from 'expo-permissions';
 import { Ionicons } from '@expo/vector-icons';
 
 const BreakButton = () => {
-
   const [isOnBreak, setIsOnBreak] = useState(false);
+  const [latitude, setLatitude] = useState(0);
+  const [longitude, setLongitude] = useState(0);
+  const [timestamp, setTimestamp] = useState(0);
+  const [isBreakButtonPressed, setIsBreakButtonPressed] = useState(false);
 
-  const handleBreakPress = () => {
-    setIsOnBreak(!isOnBreak);
+  const auth = useAuth();
+
+  useDidUpdateEffect(() => {
+    if (isBreakButtonPressed === true) {
+      auth.db.collection('events').add({
+        additionalInfo: {
+          latitude: latitude,
+          longitude: longitude,
+        },
+        createdAt: timestamp,
+        type: (isOnBreak) ? 'break-start' : 'break-end',
+        userId: auth.user.uid,
+      })
+        .then((docRef) => {
+          setIsBreakButtonPressed(false);
+          auth.updateUsersStatus(
+            docRef.id,
+            (isOnBreak) ? timestamp : 0,
+            (isOnBreak) ? 0 : timestamp,
+            (isOnBreak) ? 'break-start' : 'break-end');
+        });
+    }
+  }, [isBreakButtonPressed]);
+
+  const _getLocationAsync = async () => {
+    const currentLocation = await Location.getCurrentPositionAsync({});
+    setLatitude(currentLocation.coords.latitude);
+    setLongitude(currentLocation.coords.longitude);
+    setTimestamp(currentLocation.timestamp);
+  };
+
+  const handleBreakPress = async () => {
+    const { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      Alert.alert("Permission to access location was denied");
+    }
+    _getLocationAsync()
+      .then(() => {
+        setIsOnBreak(!isOnBreak);
+        setIsBreakButtonPressed(true);
+      })
+      .catch(error => {
+        console.log('error :', error);
+      });
   };
 
   return (

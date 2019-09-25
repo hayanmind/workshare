@@ -4,7 +4,6 @@ import constantColor from '../constants/Colors';
 import { Ionicons } from '@expo/vector-icons';
 
 const LeaveButton = () => {
-
   const [isLeavePressed, setLeavePressed] = useState(false);
 
   const handleLeavePress = () => {

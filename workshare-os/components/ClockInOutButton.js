@@ -26,8 +26,13 @@ const ClockInOutButton = () => {
         type: (isClockedIn) ? 'clocked-in' : 'clocked-out',
         userId: auth.user.uid,
       })
-        .then(() => {
+        .then((docRef) => {
           setIsClockInOutButtonPressed(false);
+          auth.updateUsersStatus(
+            docRef.id,
+            (isClockedIn) ? timestamp : 0,
+            (isClockedIn) ? 0 : timestamp,
+            (isClockedIn) ? 'clocked-in' : 'clocked-out');
         });
     }
   }, [isClockInOutButtonPressed]);
@@ -40,7 +45,7 @@ const ClockInOutButton = () => {
   };
 
   const handleOnPress = async () => {
-    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    const { status } = await Permissions.askAsync(Permissions.LOCATION);
     if (status !== 'granted') {
       Alert.alert("Permission to access location was denied");
     }
