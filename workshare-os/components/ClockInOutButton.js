@@ -26,8 +26,13 @@ const ClockInOutButton = () => {
         type: (isClockedIn) ? 'clocked-in' : 'clocked-out',
         userId: auth.user.uid,
       })
-        .then(() => {
+        .then((docRef) => {
           setIsClockInOutButtonPressed(false);
+          auth.updateUsersStatus(
+            docRef.id,
+            (isClockedIn) ? timestamp : 0,
+            (isClockedIn) ? 0 : timestamp,
+            (isClockedIn) ? 'clocked-in' : 'clocked-out');
         });
     }
   }, [isClockInOutButtonPressed]);
