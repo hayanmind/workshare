@@ -14,8 +14,20 @@ const LoginFormInput = ({ navigation }) => {
 
   const validateLogin = () => {
     auth.signIn(emailAddress, password)
-      .then(() => {
-        navigation.navigate('Main');
+      .then((user) => {
+        auth.setUserLoginData(emailAddress, password);
+        const userId = user.uid;
+        auth.db.collection('users')
+          .where('userId', '==', userId)
+          .get()
+          .then(snapshot => {
+            snapshot.forEach(doc => {
+              const orgId = doc.data().orgId;
+              (orgId.length === 0)
+                ? navigation.navigate('RegisterCompany')
+                : navigation.navigate('Main');
+            });
+          })
       }, (error) => {
         Alert.alert(error.message);
       });

@@ -34,7 +34,8 @@ export const useAuth = () => {
 function useProvideAuth() {
 
   const [user, setUser] = useState(null);
-
+  const [userEmail, setUserEmail] = useState('');
+  const [userPassword, setUserPassword] = useState('');
   const [usersStatus, setUsersStatus] = useState({
     documentId: '',
     eventId: '',
@@ -117,7 +118,20 @@ function useProvideAuth() {
       .catch(error => {
         console.log('Error getting documents', error);
       });
+  };
+
+const setUserLoginData = (emailAddress, password) => {
+  setUserEmail(emailAddress);
+  setUserPassword(password);
+};
+
+const getUserLoginData = () => {
+  const data = {
+    'emailAddress': userEmail,
+    'password': userPassword,
   }
+  return data;
+};
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
@@ -139,5 +153,7 @@ function useProvideAuth() {
     sendPasswordResetEmail,
     confirmPasswordReset,
     updateUsersStatus,
+    setUserLoginData,
+    getUserLoginData,
   };
 }
