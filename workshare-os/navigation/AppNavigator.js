@@ -14,14 +14,20 @@ const LoginRegisterNavigator = createStackNavigator(
         header: null
       },
     },
+    RegisterCompany: {
+      screen: RegisterCompany,
+      navigationOptions: {
+        title: 'Register a Company'
+      },
+    },
     Register: RegisterTabNavigator
   },
+
 );
 
 export default createAppContainer(
   createSwitchNavigator({
     Login: LoginRegisterNavigator,
-    RegisterCompany: RegisterCompany,
     Main: MainTabNavigator,
   })
 );

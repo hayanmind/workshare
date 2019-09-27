@@ -120,18 +120,18 @@ function useProvideAuth() {
       });
   };
 
-const setUserLoginData = (emailAddress, password) => {
-  setUserEmail(emailAddress);
-  setUserPassword(password);
-};
+  const setUserLoginData = (emailAddress, password) => {
+    setUserEmail(emailAddress);
+    setUserPassword(password);
+  };
 
-const getUserLoginData = () => {
-  const data = {
-    'emailAddress': userEmail,
-    'password': userPassword,
-  }
-  return data;
-};
+  const getUserLoginData = () => {
+    const data = {
+      'emailAddress': userEmail,
+      'password': userPassword,
+    }
+    return data;
+  };
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
