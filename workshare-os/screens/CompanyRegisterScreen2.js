@@ -11,9 +11,7 @@ const CompanyRegisterScreen2 = ({ navigation }) => {
   const [companyName, setCompanyName] = useState('');
 
   const auth = useAuth();
-
   const userId = auth.user.uid;
-  const values = ['hase', 'maus']
 
   useEffect(() => {
     const loginData = auth.getUserLoginData();
@@ -29,13 +27,15 @@ const CompanyRegisterScreen2 = ({ navigation }) => {
         [userId]: ['creator'],
       }
     })
-      .then(function (docRef) {
-        console.log("Document written with ID: ", docRef.id);
+      .then((docRef) => {
+        return auth.updateUsersOrgIdByUserId(docRef.id, userId);
       })
-      .catch(function (error) {
+      .then(() => {
+        navigation.navigate('Main');
+      })
+      .catch((error) => {
         console.error("Error adding document: ", error);
       });
-    // navigation.navigate('Login');
   };
 
   const extraScrollHeightPlatform = (Platform.OS === 'ios' ? 110 : 20);
@@ -53,7 +53,7 @@ const CompanyRegisterScreen2 = ({ navigation }) => {
               placeholder="My company"
               placeholderTextColor="rgba(255, 255, 255, 0.5)"
               returnKeyType="next"
-              // onSubmitEditing={() => this.companyEmailInput.focus()}
+              onSubmitEditing={validateRegister}
               onChangeText={setCompanyName}
               value={companyName}
               autoCapitalize="none"
