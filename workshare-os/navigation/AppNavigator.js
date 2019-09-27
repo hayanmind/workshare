@@ -2,9 +2,9 @@ import React from 'react';
 import { createAppContainer, createSwitchNavigator, createStackNavigator } from 'react-navigation';
 
 import LoginScreen from '../screens/LoginScreen';
-import RegisterCompany from '../screens/CompanyRegisterScreen2';
+import RegisterCompany from '../screens/CompanyRegisterScreen';
+import UserRegisterScreen from '../screens/UserRegisterScreen';
 import MainTabNavigator from './MainTabNavigator';
-import RegisterTabNavigator from './RegisterTagNavigator';
 
 const LoginRegisterNavigator = createStackNavigator(
   {
@@ -20,9 +20,13 @@ const LoginRegisterNavigator = createStackNavigator(
         title: 'Register a Company'
       },
     },
-    Register: RegisterTabNavigator
+    Register: {
+      screen: UserRegisterScreen,
+      navigationOptions: {
+        title: 'Register an Account'
+      },
+    },
   },
-
 );
 
 export default createAppContainer(
