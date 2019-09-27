@@ -23,7 +23,7 @@ const LoginScreen = ({ navigation }) => {
       <TouchableOpacity style={styles.registerButtonContainer} onPress={() => navigation.navigate('Register')}>
         <Text style={styles.registerText}>No account?
           <Text style={styles.boldText}> Click here, </Text>{"\n"}
-          to register yourself or your company!
+          to register yourself!
         </Text>
       </TouchableOpacity>
     </SafeAreaView>
