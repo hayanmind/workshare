@@ -8,8 +8,12 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 const CompanyRegisterScreen2 = ({ navigation }) => {
   const [propData, setPropData] = useState();
+  const [companyName, setCompanyName] = useState('');
 
   const auth = useAuth();
+
+  const userId = auth.user.uid;
+  const values = ['hase', 'maus']
 
   useEffect(() => {
     const loginData = auth.getUserLoginData();
@@ -17,7 +21,21 @@ const CompanyRegisterScreen2 = ({ navigation }) => {
   }, []);
 
   const validateRegister = () => {
-    navigation.navigate('Login');
+    auth.db.collection("organizations").add({
+      orgName: companyName,
+      createdBy: userId,
+      members: [userId],
+      roles: {
+        [userId]: ['creator'],
+      }
+    })
+      .then(function (docRef) {
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch(function (error) {
+        console.error("Error adding document: ", error);
+      });
+    // navigation.navigate('Login');
   };
 
   const extraScrollHeightPlatform = (Platform.OS === 'ios' ? 110 : 20);
@@ -35,7 +53,9 @@ const CompanyRegisterScreen2 = ({ navigation }) => {
               placeholder="My company"
               placeholderTextColor="rgba(255, 255, 255, 0.5)"
               returnKeyType="next"
-              onSubmitEditing={() => this.companyEmailInput.focus()}
+              // onSubmitEditing={() => this.companyEmailInput.focus()}
+              onChangeText={setCompanyName}
+              value={companyName}
               autoCapitalize="none"
               autoCorrect={false}
             />
