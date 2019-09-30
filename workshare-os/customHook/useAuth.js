@@ -34,7 +34,12 @@ export const useAuth = () => {
 function useProvideAuth() {
 
   const [user, setUser] = useState(null);
-
+  const [userEmail, setUserEmail] = useState('');
+  const [userPassword, setUserPassword] = useState('');
+  const [userOrgId, setUserOrgId] = useState({
+    documentId: '',
+    orgId: '',
+  });
   const [usersStatus, setUsersStatus] = useState({
     documentId: '',
     eventId: '',
@@ -44,13 +49,23 @@ function useProvideAuth() {
   });
 
   useDidUpdateEffect(() => {
-    db.collection('users').doc(usersStatus.documentId).update({
-      'status.eventId': usersStatus.eventId,
-      'status.from': usersStatus.from,
-      'status.to': usersStatus.to,
-      'status.type': usersStatus.statusType,
-    })
+    db.collection('users')
+      .doc(usersStatus.documentId)
+      .update({
+        'status.eventId': usersStatus.eventId,
+        'status.from': usersStatus.from,
+        'status.to': usersStatus.to,
+        'status.type': usersStatus.statusType,
+      })
   }, [usersStatus]);
+
+  useDidUpdateEffect(() => {
+    db.collection('users')
+      .doc(userOrgId.documentId)
+      .update({
+        'orgId': userOrgId.orgId,
+      })
+  }, [userOrgId]);
 
   const signIn = (email, password) => {
     return firebase
@@ -117,7 +132,39 @@ function useProvideAuth() {
       .catch(error => {
         console.log('Error getting documents', error);
       });
-  }
+  };
+
+  const updateUsersOrgIdByUserId = (orgId, userId) => {
+    db.collection('users')
+      .where('userId', '==', userId)
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          setUserOrgId({
+            documentId: doc.id,
+            orgId: orgId,
+          });
+        });
+      }).then(() => {
+        return true;
+      })
+      .catch(error => {
+        console.log('Error getting documents', error);
+      });
+  };
+
+  const setUserLoginData = (emailAddress, password) => {
+    setUserEmail(emailAddress);
+    setUserPassword(password);
+  };
+
+  const getUserLoginData = () => {
+    const data = {
+      'emailAddress': userEmail,
+      'password': userPassword,
+    }
+    return data;
+  };
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
@@ -139,5 +186,8 @@ function useProvideAuth() {
     sendPasswordResetEmail,
     confirmPasswordReset,
     updateUsersStatus,
+    updateUsersOrgIdByUserId,
+    setUserLoginData,
+    getUserLoginData,
   };
 }
