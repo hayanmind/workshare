@@ -32,7 +32,7 @@ const ProfileScreen = ({ navigation }) => {
         <Text style={styles.buttonLabel}>Company</Text>
         <SettingsButton text='Leaves' iconPath={dummyPicuture} onPress={() => navigator('Leaves')} />
         <SettingsButton text='Wage' iconPath={dummyPicuture} onPress={() => navigator('Wage')} />
-        <SettingsButton text='Add Member to Company' iconPath={dummyPicuture} onPress={() => navigator('AddMember')} />
+        <SettingsButton text='Add Member to the Company' iconPath={dummyPicuture} onPress={() => navigator('AddMember')} />
       </View>
       <View style={styles.buttonContainer}>
         <Text style={styles.buttonLabel}>Settings</Text>

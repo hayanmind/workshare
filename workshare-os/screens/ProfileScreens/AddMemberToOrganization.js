@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Alert, View, SafeAreaView, StatusBar, Platform, TouchableWithoutFeedback, Keyboard, Text, TextInput, StyleSheet } from 'react-native';
+import { useAuth } from '../../customHook/useAuth';
 import styleConst from '../../constants/Layout';
 import ButtonCustom from '../../components/ButtonCustom';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -12,6 +13,13 @@ const AddMemberToOrganization = () => {
   const isEmailAddressEmpty = (emailAddress.length === 0);
   const isRoleEmpty = (role.length === 0);
 
+  const auth = useAuth();
+
+  const updateOrgAndUser = (OrgCreatorOrgId, newMemberUid) => {
+    auth.updateUsersOrgIdByUserId(OrgCreatorOrgId, newMemberUid);
+
+  };
+
   const validateAdd = () => {
     if (isEmailAddressEmpty) {
       Alert.alert('Email address is empty.')
@@ -21,6 +29,24 @@ const AddMemberToOrganization = () => {
       Alert.alert('Role is empty.')
       return;
     }
+    auth.db.collection('users')
+      .where('emailAddress', '==', emailAddress)
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          console.log('1');
+          const newMemberOrgId = doc.data().orgId;
+          console.log('2');
+          const newMemberUid = doc.data().userId;
+          console.log('3');
+          const OrgCreatorOrgId = auth.usersDocument.orgId;
+          console.log('4');
+          // ToDo add validating based on document title length
+          (newMemberOrgId.length === 0)
+            ? updateOrgAndUser(OrgCreatorOrgId, newMemberUid)
+            : Alert.alert('This user has been added already!');
+        });
+      })
     console.log('added :', emailAddress, role);
   };
 
@@ -47,7 +73,7 @@ const AddMemberToOrganization = () => {
               autoCorrect={false}
               clearButtonMode="always"
             />
-            <Text style={styleConst.inputTextFieldLabelWhiteBackground}>Role in the company:</Text>
+            <Text style={styleConst.inputTextFieldLabelWhiteBackground}>Set the Role in the Company:</Text>
             <TextInput
               style={styleConst.inputTextFieldWhiteBackground}
               selectionColor="#fff"

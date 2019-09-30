@@ -23,6 +23,7 @@ const LoginFormInput = ({ navigation }) => {
           .then(snapshot => {
             snapshot.forEach(doc => {
               const orgId = doc.data().orgId;
+              auth.setUserDoc(doc.data());
               // ToDo add validating based on document title length
               (orgId.length === 0)
                 ? navigation.navigate('RegisterCompany')
@@ -32,6 +33,8 @@ const LoginFormInput = ({ navigation }) => {
       }, (error) => {
         Alert.alert(error.message);
       });
+
+    // navigation.navigate('Main');
   };
 
   const extraScrollHeightPlatform = (Platform.OS === 'ios' ? 70 : 120);

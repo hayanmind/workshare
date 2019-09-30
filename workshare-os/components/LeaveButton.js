@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, TouchableHighlight } from 'react-native';
+import { useAuth } from '../customHook/useAuth';
 import constantColor from '../constants/Colors';
 import { Ionicons } from '@expo/vector-icons';
 
 const LeaveButton = () => {
   const [isLeavePressed, setLeavePressed] = useState(false);
 
+
+  const auth = useAuth();
+
   const handleLeavePress = () => {
     setLeavePressed(!isLeavePressed);
+    console.log('auth.usersDoc :', auth.usersDocument);
   };
 
   return (

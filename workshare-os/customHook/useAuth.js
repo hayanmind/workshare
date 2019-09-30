@@ -47,6 +47,7 @@ function useProvideAuth() {
     to: 0,
     statusType: '',
   });
+  const [usersDocument, setUserDocument] = useState(null);
 
   useDidUpdateEffect(() => {
     db.collection('users')
@@ -166,6 +167,10 @@ function useProvideAuth() {
     return data;
   };
 
+  const setUserDoc = (dataSet) => {
+    setUserDocument(dataSet);
+  };
+
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -179,6 +184,7 @@ function useProvideAuth() {
 
   return {
     user,
+    usersDocument,
     db,
     signIn,
     signUp,
@@ -189,5 +195,6 @@ function useProvideAuth() {
     updateUsersOrgIdByUserId,
     setUserLoginData,
     getUserLoginData,
+    setUserDoc,
   };
 }
