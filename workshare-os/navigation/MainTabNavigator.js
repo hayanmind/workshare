@@ -13,6 +13,7 @@ import ChangeEmailScreen from '../screens/ProfileScreens/ChangeEmailScreen';
 import ChangePasswordScreen from '../screens/ProfileScreens/ChangePasswordScreen';
 import LeavesScreen from '../screens/ProfileScreens/LeavesScreen';
 import WageScreen from '../screens/ProfileScreens/WageScreen';
+import AddMemberToOrganization from '../screens/ProfileScreens/AddMemberToCompany';
 import SettingsScreen from '../screens/ProfileScreens/SettingsScreen';
 import SwitchCompanyScreen from '../screens/ProfileScreens/SwitchCompanyScreen';
 import constantColor from '../constants/Colors';
@@ -70,6 +71,7 @@ const ProfileStack = createStackNavigator(
     ChangePassword: ChangePasswordScreen,
     Leaves: LeavesScreen,
     Wage: WageScreen,
+    AddMember: AddMemberToOrganization,
     Settings: SettingsScreen,
     SwitchCompany: SwitchCompanyScreen,
   },

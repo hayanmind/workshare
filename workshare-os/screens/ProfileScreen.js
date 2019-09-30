@@ -32,6 +32,7 @@ const ProfileScreen = ({ navigation }) => {
         <Text style={styles.buttonLabel}>Company</Text>
         <SettingsButton text='Leaves' iconPath={dummyPicuture} onPress={() => navigator('Leaves')} />
         <SettingsButton text='Wage' iconPath={dummyPicuture} onPress={() => navigator('Wage')} />
+        <SettingsButton text='Add member to company' iconPath={dummyPicuture} onPress={() => navigator('AddMember')} />
       </View>
       <View style={styles.buttonContainer}>
         <Text style={styles.buttonLabel}>Settings</Text>
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
   },
   buttonContainerCompany: {
     marginVertical: 10,
-    flex: 2,
+    flex: 3,
   },
   buttonLabel: {
     fontSize: 18,
