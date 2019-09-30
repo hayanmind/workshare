@@ -4,7 +4,7 @@ import styleConst from '../../constants/Layout';
 import ButtonCustom from '../../components/ButtonCustom';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-const LeavesScreen = () => {
+const AddMemberToOrganization = () => {
 
   const [emailAddress, setEmailAddress] = useState('');
   const [role, setRole] = useState('');
@@ -21,7 +21,6 @@ const LeavesScreen = () => {
       Alert.alert('Role is empty.')
       return;
     }
-
     console.log('added :', emailAddress, role);
   };
 
@@ -70,7 +69,7 @@ const LeavesScreen = () => {
   );
 }
 
-LeavesScreen.navigationOptions = {
+AddMemberToOrganization.navigationOptions = {
   title: 'Add a Member',
 };
 
@@ -86,4 +85,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LeavesScreen;
+export default AddMemberToOrganization;
