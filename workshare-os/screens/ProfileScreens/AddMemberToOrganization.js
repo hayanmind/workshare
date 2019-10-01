@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Alert, View, SafeAreaView, StatusBar, Platform, TouchableWithoutFeedback, Keyboard, Text, TextInput, ScrollView, StyleSheet } from 'react-native';
 import { useAuth } from '../../customHook/useAuth';
 import styleConst from '../../constants/Layout';
@@ -12,7 +12,7 @@ const AddMemberToOrganization = () => {
   const [roles, setRoles] = useState([]);
 
   const isEmailAddressEmpty = (emailAddress.length === 0);
-  const isRoleEmpty = (roles.length === 0);
+  const isRolesEmpty = (roles.length === 0);
   const isRoleTextInputEmpty = (roleTextInput === '');
 
   const auth = useAuth();
@@ -41,7 +41,7 @@ const AddMemberToOrganization = () => {
       Alert.alert('The email address field is empty.')
       return;
     }
-    if (isRoleEmpty) {
+    if (isRolesEmpty) {
       Alert.alert('You have to give the member a role.')
       return;
     }
@@ -98,7 +98,7 @@ const AddMemberToOrganization = () => {
               autoCorrect={false}
               clearButtonMode="always"
             />
-            {(roles.length === 0)
+            {(isRolesEmpty)
               ? <Text style={styleConst.inputTextFieldLabelWhiteBackground}>No roles added yet</Text>
               : <Text style={styleConst.inputTextFieldLabelWhiteBackground}>Created roles:</Text>
             }
