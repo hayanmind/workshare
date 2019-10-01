@@ -7,12 +7,10 @@ import { Ionicons } from '@expo/vector-icons';
 const LeaveButton = () => {
   const [isLeavePressed, setLeavePressed] = useState(false);
 
-
   const auth = useAuth();
 
   const handleLeavePress = () => {
     setLeavePressed(!isLeavePressed);
-    console.log('auth.usersDoc :', auth.usersDocument);
   };
 
   return (

@@ -34,6 +34,6 @@ export default {
     fontSize: 16,
     fontWeight: '700',
     color: '#000',
-    marginBottom: 10,
+    marginBottom: 5,
   }
 };

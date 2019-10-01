@@ -33,8 +33,6 @@ const LoginFormInput = ({ navigation }) => {
       }, (error) => {
         Alert.alert(error.message);
       });
-
-    // navigation.navigate('Main');
   };
 
   const extraScrollHeightPlatform = (Platform.OS === 'ios' ? 70 : 120);

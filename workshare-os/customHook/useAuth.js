@@ -49,8 +49,6 @@ function useProvideAuth() {
   });
   const [usersDocument, setUserDocument] = useState(null);
 
-  // const newMemberRolescustom = ['hello', 'hi', 'ne'];
-
   useDidUpdateEffect(() => {
     db.collection('users')
       .doc(usersStatus.documentId)
@@ -151,7 +149,6 @@ function useProvideAuth() {
       )
   };
 
-
   const updateUsersOrgIdByUserId = (orgId, userId) => {
     db.collection('users')
       .where('userId', '==', userId)
@@ -178,6 +175,17 @@ function useProvideAuth() {
 
   const setUserDoc = (dataSet) => {
     setUserDocument(dataSet);
+  };
+
+  const loadUserDocument = () => {
+    db.collection('users')
+      .where('userId', '==', user.uid)
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          setUserDocument(doc.data());
+        });
+      })
   };
 
   const getUserLoginData = () => {
@@ -214,5 +222,6 @@ function useProvideAuth() {
     setUserLoginData,
     getUserLoginData,
     setUserDoc,
+    loadUserDocument,
   };
 }

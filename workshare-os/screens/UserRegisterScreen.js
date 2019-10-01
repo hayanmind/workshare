@@ -31,7 +31,7 @@ const UserRegisterScreen = ({ navigation }) => {
         type: "created",
       },
       workHoursWeekly: 0,
-      emailAddress: emailAddress,
+      emailAddress: emailAddress.toLowerCase(),
       userId: userId,
     })
   };
