@@ -135,7 +135,7 @@ function useProvideAuth() {
       });
   };
 
-  const updateOrgState = (orgDocId, newMemberUid, newMemberRoles) => {
+  const addMemberToOrg = (orgDocId, newMemberUid, newMemberRoles) => {
     db.collection('organizations')
       .doc(orgDocId)
       .set(
@@ -217,7 +217,7 @@ function useProvideAuth() {
     sendPasswordResetEmail,
     confirmPasswordReset,
     updateUsersStatus,
-    updateOrgState,
+    addMemberToOrg,
     updateUsersOrgIdByUserId,
     setUserLoginData,
     getUserLoginData,

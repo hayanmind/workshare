@@ -17,9 +17,9 @@ const AddMemberToOrganization = () => {
 
   const auth = useAuth();
 
-  const updateOrgAndUser = (OrgCreatorOrgId, newMemberUid) => {
-    auth.updateUsersOrgIdByUserId(OrgCreatorOrgId, newMemberUid);
-    auth.updateOrgState(OrgCreatorOrgId, newMemberUid, roles);
+  const updateOrgAndUser = (orgCreatorOrgId, newMemberUid) => {
+    auth.updateUsersOrgIdByUserId(orgCreatorOrgId, newMemberUid);
+    auth.addMemberToOrganization(orgCreatorOrgId, newMemberUid, roles);
     Alert.alert('The user has been added to your organization successfully!')
   };
 
@@ -52,10 +52,10 @@ const AddMemberToOrganization = () => {
         snapshot.forEach(doc => {
           const newMemberOrgId = doc.data().orgId;
           const newMemberUid = doc.data().userId;
-          const OrgCreatorOrgId = auth.usersDocument.orgId;
+          const orgCreatorOrgId = auth.usersDocument.orgId;
           // ToDo add validating based on document title length
           (newMemberOrgId.length === 0)
-            ? updateOrgAndUser(OrgCreatorOrgId, newMemberUid)
+            ? updateOrgAndUser(orgCreatorOrgId, newMemberUid)
             : Alert.alert('This user has been added already!');
         });
       })
