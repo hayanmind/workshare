@@ -8,7 +8,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 const AddMemberToOrganization = () => {
 
   const [emailAddress, setEmailAddress] = useState('');
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState([]);
 
   const isEmailAddressEmpty = (emailAddress.length === 0);
   const isRoleEmpty = (role.length === 0);
@@ -17,7 +17,7 @@ const AddMemberToOrganization = () => {
 
   const updateOrgAndUser = (OrgCreatorOrgId, newMemberUid) => {
     auth.updateUsersOrgIdByUserId(OrgCreatorOrgId, newMemberUid);
-
+    auth.updateOrgState(OrgCreatorOrgId, newMemberUid, role);
   };
 
   const validateAdd = () => {
