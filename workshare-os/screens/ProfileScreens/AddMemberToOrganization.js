@@ -13,12 +13,14 @@ const AddMemberToOrganization = () => {
 
   const isEmailAddressEmpty = (emailAddress.length === 0);
   const isRoleEmpty = (roles.length === 0);
+  const isRoleTextInputEmpty = (roleTextInput === '');
 
   const auth = useAuth();
 
   const updateOrgAndUser = (OrgCreatorOrgId, newMemberUid) => {
     auth.updateUsersOrgIdByUserId(OrgCreatorOrgId, newMemberUid);
     auth.updateOrgState(OrgCreatorOrgId, newMemberUid, roles);
+    Alert.alert('The user has been added to your organization successfully!')
   };
 
   const addRolesToArray = () => {
@@ -26,7 +28,7 @@ const AddMemberToOrganization = () => {
       Alert.alert('You cannot set the role to Creator')
       return;
     }
-    if (roleTextInput === '') {
+    if (isRoleTextInputEmpty) {
       Alert.alert('You cannot add an empty role!')
       return;
     }
@@ -96,7 +98,6 @@ const AddMemberToOrganization = () => {
               autoCorrect={false}
               clearButtonMode="always"
             />
-
             {(roles.length === 0)
               ? <Text style={styleConst.inputTextFieldLabelWhiteBackground}>No roles added yet</Text>
               : <Text style={styleConst.inputTextFieldLabelWhiteBackground}>Created roles:</Text>
