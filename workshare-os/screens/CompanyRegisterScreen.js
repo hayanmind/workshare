@@ -27,7 +27,7 @@ const CompanyRegisterScreen = ({ navigation }) => {
       createdBy: userId,
       members: [userId],
       roles: {
-        [userId]: ['creator'],
+        [userId]: ['Creator'],
       }
     })
       .then((docRef) => {
@@ -35,6 +35,9 @@ const CompanyRegisterScreen = ({ navigation }) => {
       })
       .then(() => {
         return auth.signIn(propData.emailAddress, propData.password);
+      })
+      .then(() => {
+        return auth.loadUserDocument();
       })
       .then(() => {
         navigation.navigate('Main');

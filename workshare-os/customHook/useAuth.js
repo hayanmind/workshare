@@ -47,6 +47,7 @@ function useProvideAuth() {
     to: 0,
     statusType: '',
   });
+  const [usersDocument, setUserDocument] = useState(null);
 
   useDidUpdateEffect(() => {
     db.collection('users')
@@ -134,6 +135,20 @@ function useProvideAuth() {
       });
   };
 
+  const addMemberToOrg = (orgDocId, newMemberUid, newMemberRoles) => {
+    db.collection('organizations')
+      .doc(orgDocId)
+      .set(
+        {
+          members: firebase.firestore.FieldValue.arrayUnion(newMemberUid),
+          roles: {
+            [newMemberUid]: newMemberRoles,
+          }
+        },
+        { merge: true },
+      )
+  };
+
   const updateUsersOrgIdByUserId = (orgId, userId) => {
     db.collection('users')
       .where('userId', '==', userId)
@@ -158,6 +173,21 @@ function useProvideAuth() {
     setUserPassword(password);
   };
 
+  const setUserDoc = (dataSet) => {
+    setUserDocument(dataSet);
+  };
+
+  const loadUserDocument = () => {
+    db.collection('users')
+      .where('userId', '==', user.uid)
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          setUserDocument(doc.data());
+        });
+      })
+  };
+
   const getUserLoginData = () => {
     const data = {
       'emailAddress': userEmail,
@@ -179,6 +209,7 @@ function useProvideAuth() {
 
   return {
     user,
+    usersDocument,
     db,
     signIn,
     signUp,
@@ -186,8 +217,11 @@ function useProvideAuth() {
     sendPasswordResetEmail,
     confirmPasswordReset,
     updateUsersStatus,
+    addMemberToOrg,
     updateUsersOrgIdByUserId,
     setUserLoginData,
     getUserLoginData,
+    setUserDoc,
+    loadUserDocument,
   };
 }
