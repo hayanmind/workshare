@@ -7,7 +7,7 @@ import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import { Ionicons } from '@expo/vector-icons';
 
-const BreakButton = () => {
+const BreakButton = ({ enabled }) => {
   const [isOnBreak, setIsOnBreak] = useState(false);
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
@@ -67,6 +67,7 @@ const BreakButton = () => {
         { backgroundColor: (isOnBreak) ? constantColor.breakColor : constantColor.lightGrayColor }]}
         onPress={handleBreakPress}
         underlayColor={(isOnBreak) ? constantColor.breakColorOpacity : constantColor.lightGrayColorOpacity}
+        disabled={!enabled}
       >
         <View style={styles.iconContainer}>
           <Ionicons name="ios-cafe" size={70} color="#fff" />

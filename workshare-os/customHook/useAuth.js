@@ -32,7 +32,6 @@ export const useAuth = () => {
 };
 
 function useProvideAuth() {
-
   const [user, setUser] = useState(null);
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
@@ -49,6 +48,14 @@ function useProvideAuth() {
   });
   const [usersDocument, setUserDocument] = useState(null);
   const [orgMembers, setOrgMembers] = useState([]);
+
+  // useDidUpdateEffect(() => {
+  //   loadUserDocument();
+  // }, [user]);
+
+  // useDidUpdateEffect(() => {
+  //   console.log('usersDocument :', usersDocument);
+  // }, [usersDocument]);
 
   useDidUpdateEffect(() => {
     db.collection('users')

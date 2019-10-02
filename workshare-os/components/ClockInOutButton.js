@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, TouchableHighlight, Alert } from 'react-native';
 import useDidUpdateEffect from '../customHook/useDidUpdateEffect';
 import { useAuth } from '../customHook/useAuth';
@@ -6,17 +6,36 @@ import constantColor from '../constants/Colors';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 
-const ClockInOutButton = () => {
+const ClockInOutButton = ({ enabled, isClockInButton }) => {
   const [isClockedIn, setIsClockedIn] = useState(false);
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
   const [timestamp, setTimestamp] = useState(0);
-  const [isClockInOutButtonPressed, setIsClockInOutButtonPressed] = useState(false);
+  const [isLocationInPreperation, setIsLocationInPreparation] = useState(false); // TODO: Disable buttons when locationInPreparation is true
+
+  // 1. In the beginning, loads the server's up-to-date data (or AppState becomes active)
+  // 2. Application works locally
+  // 3. Sync the data back to the server in response to state changes (using useEffect)
+
+  useEffect(() => {
+    // Get updates from server and sync the current value with it
+    setIsClockedIn(isClockInButton);
+  }, [isClockInButton]);
 
   const auth = useAuth();
 
+  // useEffect(() => {
+  //   setIsClockInOutButtonPressed
+  //     (
+  //       (auth.usersDocument.status.type === 'clocked-out')
+  //         ? true
+  //         : false
+  //     )
+  // }, []);
+
   useDidUpdateEffect(() => {
-    if (isClockInOutButtonPressed === true) {
+    if (isLocationInPreperation === true) {
+      setIsLocationInPreparation(false);
       auth.db.collection('events').add({
         additionalInfo: {
           latitude: latitude,
@@ -27,7 +46,6 @@ const ClockInOutButton = () => {
         userId: auth.user.uid,
       })
         .then((docRef) => {
-          setIsClockInOutButtonPressed(false);
           auth.updateUsersStatus(
             docRef.id,
             (isClockedIn) ? timestamp : 0,
@@ -35,7 +53,7 @@ const ClockInOutButton = () => {
             (isClockedIn) ? 'clocked-in' : 'clocked-out');
         });
     }
-  }, [isClockInOutButtonPressed]);
+  }, [isLocationInPreperation]);
 
   const _getLocationAsync = async () => {
     const currentLocation = await Location.getCurrentPositionAsync({});
@@ -49,10 +67,11 @@ const ClockInOutButton = () => {
     if (status !== 'granted') {
       Alert.alert("Permission to access location was denied");
     }
+    setIsClockedIn(!isClockedIn);
     _getLocationAsync()
       .then(() => {
-        setIsClockedIn(!isClockedIn);
-        setIsClockInOutButtonPressed(true);
+        // setIsClockedIn(!isClockedIn);
+        setIsLocationInPreparation(true);
       })
       .catch(error => {
         console.log('error :', error);
@@ -65,6 +84,7 @@ const ClockInOutButton = () => {
         style={[styles.button, { backgroundColor: (isClockedIn) ? constantColor.logoutColor : constantColor.loginColor }]}
         onPress={handleOnPress}
         underlayColor={(isClockedIn) ? constantColor.logoutColorOpacity : constantColor.loginColorOpacity}
+        disabled={!enabled || isLocationInPreperation} // (perhaps, loading indicator required later?)
       >
         <Text style={styles.text}>{(isClockedIn) ? "clock out" : "clock in"}</Text>
       </TouchableHighlight>
