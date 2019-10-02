@@ -5,15 +5,17 @@ import constantColor from '../constants/Colors';
 const MembersStatus = (props) => {
   const {
     onPress,
-    status = 'empty',
+    status,
     memberName,
   } = props;
 
   const statusDot = (status) => {
-    switch (status) {
-      case 'available':
+    switch (status.type) {
+      case 'clocked-in':
         return ([styles.dot, { backgroundColor: constantColor.loginColor }]);
-      case 'break':
+      case 'break-end':
+        return ([styles.dot, { backgroundColor: constantColor.loginColor }]);
+      case 'break-start':
         return ([styles.dot, { backgroundColor: constantColor.breakColor }]);
       case 'busy':
         return ([styles.dot, { backgroundColor: constantColor.logoutColor }]);
@@ -24,27 +26,39 @@ const MembersStatus = (props) => {
     }
   };
 
+  const addZeroBefore = (n) => {
+    return (n < 10 ? '0' : '') + n;
+  }
+
+  const timeHM = (timestamp) => {
+    const hours = new Date(timestamp).getHours();
+    const minutes = new Date(timestamp).getMinutes();
+    const string = addZeroBefore(hours) + ':' + addZeroBefore(minutes);
+    return string;
+  }
+
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.touchContainer} onPress={onPress}>
         <View style={styles.statusContainer}>
           <View style={styles.clockInContainer}>
             {
-              (status === 'empty')
-                ? <Text>Not ClockedIn</Text>
-                : (status === 'leave')
+              (status.type === 'clocked-out')
+                ? <Text>Clocked out</Text>
+                : (status.type === 'leave')
                   ? <Text>On Leave</Text>
-                  : <Text>ClockIn Time</Text>
+                  : <Text>{timeHM(status.from)}</Text>
             }
           </View>
           <View style={styles.statusSeperator} />
           <View style={styles.clockOutContainer}>
             {
-              (status === 'empty')
-                ? <Text />
-                : (status === 'clockedOut')
-                  ? <Text>ClockOut Time</Text>
-                  : <View style={statusDot(status)} />
+              // (status.type === 'empty')
+              //   ? <Text />
+              // : 
+              (status.type === 'clocked-out')
+                ? <Text>{timeHM(status.to)}</Text>
+                : <View style={statusDot(status)} />
             }
           </View>
         </View>

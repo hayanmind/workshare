@@ -7,8 +7,8 @@ import { useAuth } from '../customHook/useAuth';
 
 const LoginFormInput = ({ navigation }) => {
 
-  const [emailAddress, setEmailAddress] = useState('');
-  const [password, setPassword] = useState('');
+  const [emailAddress, setEmailAddress] = useState('ex@aol.com');
+  const [password, setPassword] = useState('aaaaaa');
 
   const auth = useAuth();
 
