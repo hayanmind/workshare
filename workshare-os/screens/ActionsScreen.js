@@ -27,7 +27,8 @@ const ActionsScreen = () => {
       case 'break-start':
         return false;
       case 'break-end':
-        return false;
+        // return false;
+        return true;
       default:
     }
     // (lastState === 'break-end' || lastState === 'clocked-out' || lastState === 'clocked-in') ? true : false;
@@ -42,6 +43,7 @@ const ActionsScreen = () => {
         return false;
       case 'break-end':
         return false;
+        // return true;
       default:
     }
     // (lastState === 'clocked-out') ? true : false;
@@ -60,7 +62,20 @@ const ActionsScreen = () => {
     }
     // (lastState === 'clocked-in') ? true : false;
   })();
-
+  const isOnBreak = (() => {
+    switch (lastState) {
+      case 'clocked-in':
+        return false;
+      case 'clocked-out':
+        return false;
+      case 'break-start':
+        return true;
+      case 'break-end':
+        return false;
+      default:
+    }
+    // (lastState === 'clocked-in') ? true : false;
+  })();
 
   return (
     <View style={styles.container}>
@@ -70,7 +85,7 @@ const ActionsScreen = () => {
       </View>
       <View style={styles.breakLeaveButtonContainer}>
         <View style={styles.breakButton}>
-          <BreakButton enabled={breakButtonEnabled} />
+          <BreakButton enabled={breakButtonEnabled} isOnBreakNow={isOnBreak} />
         </View>
         <View style={styles.leaveButton}>
           <LeaveButton />

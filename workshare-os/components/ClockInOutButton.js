@@ -8,6 +8,7 @@ import * as Permissions from 'expo-permissions';
 
 const ClockInOutButton = ({ enabled, isClockInButton }) => {
   const [isClockedIn, setIsClockedIn] = useState(false);
+  const [enabled2, setIsEnabled] = useState(false);
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
   const [timestamp, setTimestamp] = useState(0);
@@ -21,6 +22,12 @@ const ClockInOutButton = ({ enabled, isClockInButton }) => {
     // Get updates from server and sync the current value with it
     setIsClockedIn(isClockInButton);
   }, [isClockInButton]);
+
+  useEffect(() => {
+    // Get updates from server and sync the current value with it
+    console.log('triggered :');
+    setIsEnabled(enabled);
+  }, [enabled]);
 
   const auth = useAuth();
 
@@ -84,7 +91,8 @@ const ClockInOutButton = ({ enabled, isClockInButton }) => {
         style={[styles.button, { backgroundColor: (isClockedIn) ? constantColor.logoutColor : constantColor.loginColor }]}
         onPress={handleOnPress}
         underlayColor={(isClockedIn) ? constantColor.logoutColorOpacity : constantColor.loginColorOpacity}
-        disabled={!enabled || isLocationInPreperation} // (perhaps, loading indicator required later?)
+        // disabled={!enabled || isLocationInPreperation} // (perhaps, loading indicator required later?)
+        disabled={!enabled2} // (perhaps, loading indicator required later?)
       >
         <Text style={styles.text}>{(isClockedIn) ? "clock out" : "clock in"}</Text>
       </TouchableHighlight>
