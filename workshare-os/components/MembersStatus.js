@@ -53,9 +53,6 @@ const MembersStatus = (props) => {
           <View style={styles.statusSeperator} />
           <View style={styles.clockOutContainer}>
             {
-              // (status.type === 'empty')
-              //   ? <Text />
-              // : 
               (status.type === 'clocked-out')
                 ? <Text>{timeHM(status.to)}</Text>
                 : <View style={statusDot(status)} />

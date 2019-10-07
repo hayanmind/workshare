@@ -29,7 +29,7 @@ const SchedulesScreen = ({ navigation }) => {
           <MembersStatus
             memberName={item.name.firstName + ' ' + item.name.lastName}
             status={item.status}
-            onPress={() => navigation.navigate('Schedule', {userId: item.userId})}
+            onPress={() => navigation.navigate('Schedule', { userId: item.userId })}
           />}
         keyExtractor={item => item.userId.toString()}
       />

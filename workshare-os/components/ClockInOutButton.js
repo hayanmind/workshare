@@ -11,7 +11,7 @@ const ClockInOutButton = ({ enabled, isClockInButton }) => {
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
   const [timestamp, setTimestamp] = useState(0);
-  const [isLocationInPreperation, setIsLocationInPreparation] = useState(false); // TODO: Disable buttons when locationInPreparation is true
+  const [isLocationInPreperation, setIsLocationInPreparation] = useState(false);
 
   useEffect(() => {
     setIsClockedIn(isClockInButton);
