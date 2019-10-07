@@ -26,14 +26,14 @@ const MembersStatus = (props) => {
     }
   };
 
-  const addZeroBefore = (n) => {
-    return (n < 10 ? '0' : '') + n;
+  const addZeroBeforeSmallerThan10 = (number) => {
+    return (number < 10 ? '0' : '') + number;
   }
 
-  const timeHM = (timestamp) => {
+  const timeHourMinute = (timestamp) => {
     const hours = new Date(timestamp).getHours();
     const minutes = new Date(timestamp).getMinutes();
-    const string = addZeroBefore(hours) + ':' + addZeroBefore(minutes);
+    const string = addZeroBeforeSmallerThan10(hours) + ':' + addZeroBeforeSmallerThan10(minutes);
     return string;
   }
 
@@ -47,14 +47,14 @@ const MembersStatus = (props) => {
                 ? <Text>Clocked out</Text>
                 : (status.type === 'leave')
                   ? <Text>On Leave</Text>
-                  : <Text>{timeHM(status.from)}</Text>
+                  : <Text>{timeHourMinute(status.from)}</Text>
             }
           </View>
           <View style={styles.statusSeperator} />
           <View style={styles.clockOutContainer}>
             {
               (status.type === 'clocked-out')
-                ? <Text>{timeHM(status.to)}</Text>
+                ? <Text>{timeHourMinute(status.to)}</Text>
                 : <View style={statusDot(status)} />
             }
           </View>
