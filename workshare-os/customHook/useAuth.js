@@ -49,9 +49,9 @@ function useProvideAuth() {
   const [usersDocument, setUserDocument] = useState(null);
   const [orgMembers, setOrgMembers] = useState([]);
 
-  // useDidUpdateEffect(() => {
-  //   loadUserDocument();
-  // }, [user]);
+  useDidUpdateEffect(() => {
+    loadUserDocument();
+  }, [usersStatus]);
 
   // useDidUpdateEffect(() => {
   //   console.log('usersDocument :', usersDocument);
