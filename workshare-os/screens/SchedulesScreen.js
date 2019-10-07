@@ -19,7 +19,7 @@ const SchedulesScreen = ({ navigation }) => {
       <StatusBar barStyle="light-content" />
       <ButtonCustom onPress={refresh} buttonText="refresh" />
       <NavigationEvents
-        onWillFocus={payload => {
+        onWillFocus={() => {
           auth.getAllMembersOfTheCompany();
         }}
       />
