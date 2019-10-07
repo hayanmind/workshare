@@ -26,14 +26,14 @@ const MembersStatus = (props) => {
     }
   };
 
-  const addZeroBeforeSmallerThan10 = (number) => {
+  const addZeroBeforeOneDigitNumber = (number) => {
     return (number < 10 ? '0' : '') + number;
   }
 
   const timeHourMinute = (timestamp) => {
     const hours = new Date(timestamp).getHours();
     const minutes = new Date(timestamp).getMinutes();
-    const string = addZeroBeforeSmallerThan10(hours) + ':' + addZeroBeforeSmallerThan10(minutes);
+    const string = addZeroBeforeOneDigitNumber(hours) + ':' + addZeroBeforeOneDigitNumber(minutes);
     return string;
   }
 
