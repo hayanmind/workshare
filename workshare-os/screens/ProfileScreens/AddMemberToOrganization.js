@@ -19,7 +19,7 @@ const AddMemberToOrganization = () => {
 
   const updateOrgAndUser = (orgCreatorOrgId, newMemberUid) => {
     auth.updateUsersOrgIdByUserId(orgCreatorOrgId, newMemberUid);
-    auth.addMemberToOrganization(orgCreatorOrgId, newMemberUid, roles);
+    auth.addMemberToOrg(orgCreatorOrgId, newMemberUid, roles);
     Alert.alert('The user has been added to your organization successfully!')
   };
 

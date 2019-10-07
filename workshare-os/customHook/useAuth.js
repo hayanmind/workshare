@@ -32,11 +32,10 @@ export const useAuth = () => {
 };
 
 function useProvideAuth() {
-
   const [user, setUser] = useState(null);
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
-  const [userOrgId, setUserOrgId] = useState({
+  const [userOrgIdAfterUpdate, setUserOrgIdAfterUpdate] = useState({
     documentId: '',
     orgId: '',
   });
@@ -48,6 +47,11 @@ function useProvideAuth() {
     statusType: '',
   });
   const [usersDocument, setUserDocument] = useState(null);
+  const [orgMembers, setOrgMembers] = useState([]);
+
+  useDidUpdateEffect(() => {
+    loadUserDocument();
+  }, [usersStatus]);
 
   useDidUpdateEffect(() => {
     db.collection('users')
@@ -62,11 +66,11 @@ function useProvideAuth() {
 
   useDidUpdateEffect(() => {
     db.collection('users')
-      .doc(userOrgId.documentId)
+      .doc(userOrgIdAfterUpdate.documentId)
       .update({
-        'orgId': userOrgId.orgId,
+        'orgId': userOrgIdAfterUpdate.orgId,
       })
-  }, [userOrgId]);
+  }, [userOrgIdAfterUpdate]);
 
   const signIn = (email, password) => {
     return firebase
@@ -155,7 +159,7 @@ function useProvideAuth() {
       .get()
       .then(snapshot => {
         snapshot.forEach(doc => {
-          setUserOrgId({
+          setUserOrgIdAfterUpdate({
             documentId: doc.id,
             orgId: orgId,
           });
@@ -196,6 +200,19 @@ function useProvideAuth() {
     return data;
   };
 
+  const getAllMembersOfTheCompany = () => {
+    setOrgMembers([]);
+
+    db.collection('users')
+      .where('orgId', '==', usersDocument.orgId)
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          setOrgMembers(prev => [...prev, doc.data()]);
+        });
+      })
+  };
+
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -210,6 +227,7 @@ function useProvideAuth() {
   return {
     user,
     usersDocument,
+    orgMembers,
     db,
     signIn,
     signUp,
@@ -223,5 +241,6 @@ function useProvideAuth() {
     getUserLoginData,
     setUserDoc,
     loadUserDocument,
+    getAllMembersOfTheCompany,
   };
 }

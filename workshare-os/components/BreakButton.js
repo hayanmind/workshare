@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, TouchableHighlight, Alert } from 'react-native';
 import useDidUpdateEffect from '../customHook/useDidUpdateEffect';
 import { useAuth } from '../customHook/useAuth';
@@ -7,36 +7,40 @@ import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import { Ionicons } from '@expo/vector-icons';
 
-const BreakButton = () => {
+const BreakButton = ({ enabled, isOnBreakNow }) => {
   const [isOnBreak, setIsOnBreak] = useState(false);
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
   const [timestamp, setTimestamp] = useState(0);
-  const [isBreakButtonPressed, setIsBreakButtonPressed] = useState(false);
+  const [isLocationInPreperation, setIsLocationInPreparation] = useState(false);
+
+  useEffect(() => {
+    setIsOnBreak(isOnBreakNow);
+  }, [isOnBreakNow]);
 
   const auth = useAuth();
 
   useDidUpdateEffect(() => {
-    if (isBreakButtonPressed === true) {
+    if (isLocationInPreperation === true) {
+      setIsLocationInPreparation(false);
       auth.db.collection('events').add({
         additionalInfo: {
           latitude: latitude,
           longitude: longitude,
         },
         createdAt: timestamp,
-        type: (isOnBreak) ? 'break-start' : 'break-end',
+        type: (isOnBreak) ? 'break-end' : 'break-start',
         userId: auth.user.uid,
       })
         .then((docRef) => {
-          setIsBreakButtonPressed(false);
           auth.updateUsersStatus(
             docRef.id,
             (isOnBreak) ? timestamp : 0,
             (isOnBreak) ? 0 : timestamp,
-            (isOnBreak) ? 'break-start' : 'break-end');
+            (isOnBreak) ? 'break-end' : 'break-start');
         });
     }
-  }, [isBreakButtonPressed]);
+  }, [isLocationInPreperation]);
 
   const _getLocationAsync = async () => {
     const currentLocation = await Location.getCurrentPositionAsync({});
@@ -52,8 +56,7 @@ const BreakButton = () => {
     }
     _getLocationAsync()
       .then(() => {
-        setIsOnBreak(!isOnBreak);
-        setIsBreakButtonPressed(true);
+        setIsLocationInPreparation(true);
       })
       .catch(error => {
         console.log('error :', error);
@@ -67,6 +70,7 @@ const BreakButton = () => {
         { backgroundColor: (isOnBreak) ? constantColor.breakColor : constantColor.lightGrayColor }]}
         onPress={handleBreakPress}
         underlayColor={(isOnBreak) ? constantColor.breakColorOpacity : constantColor.lightGrayColorOpacity}
+        disabled={!enabled || isLocationInPreperation}
       >
         <View style={styles.iconContainer}>
           <Ionicons name="ios-cafe" size={70} color="#fff" />

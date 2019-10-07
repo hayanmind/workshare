@@ -6,6 +6,7 @@ import {
   View,
   StatusBar,
 } from 'react-native';
+import { useAuth } from '../customHook/useAuth';
 
 import ClockInOutButton from '../components/ClockInOutButton';
 import BreakButton from '../components/BreakButton';
@@ -15,15 +16,70 @@ import BarChartAction from '../components/BarChartAction';
 
 const ActionsScreen = () => {
 
+  const auth = useAuth();
+  const lastState = (auth.usersDocument.status.type);
+  const clockInOutButtonEnabled = (() => {
+    switch (lastState) {
+      case 'clocked-in':
+        return true;
+      case 'clocked-out':
+        return true;
+      case 'break-start':
+        return false;
+      case 'break-end':
+        return true;
+      default:
+    }
+  })();
+  const isClockInButton = (() => {
+    switch (lastState) {
+      case 'clocked-in':
+        return false;
+      case 'clocked-out':
+        return true;
+      case 'break-start':
+        return false;
+      case 'break-end':
+        return false;
+      default:
+    }
+  })();
+  const breakButtonEnabled = (() => {
+    switch (lastState) {
+      case 'clocked-in':
+        return true;
+      case 'clocked-out':
+        return false;
+      case 'break-start':
+        return true;
+      case 'break-end':
+        return true;
+      default:
+    }
+  })();
+  const isOnBreak = (() => {
+    switch (lastState) {
+      case 'clocked-in':
+        return false;
+      case 'clocked-out':
+        return false;
+      case 'break-start':
+        return true;
+      case 'break-end':
+        return false;
+      default:
+    }
+  })();
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
       <View style={styles.clockInButtonContainer}>
-        <ClockInOutButton />
+        <ClockInOutButton enabled={clockInOutButtonEnabled} isClockInButton={!isClockInButton} />
       </View>
       <View style={styles.breakLeaveButtonContainer}>
         <View style={styles.breakButton}>
-          <BreakButton />
+          <BreakButton enabled={breakButtonEnabled} isOnBreakNow={isOnBreak} />
         </View>
         <View style={styles.leaveButton}>
           <LeaveButton />

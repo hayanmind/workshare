@@ -12,6 +12,7 @@ const LoginFormInput = ({ navigation }) => {
 
   const auth = useAuth();
 
+  // ToDo just let one user be logged in with one device
   const validateLogin = () => {
     auth.signIn(emailAddress, password)
       .then((user) => {
