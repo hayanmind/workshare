@@ -8,37 +8,16 @@ import * as Permissions from 'expo-permissions';
 
 const ClockInOutButton = ({ enabled, isClockInButton }) => {
   const [isClockedIn, setIsClockedIn] = useState(false);
-  const [enabled2, setIsEnabled] = useState(false);
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
   const [timestamp, setTimestamp] = useState(0);
   const [isLocationInPreperation, setIsLocationInPreparation] = useState(false); // TODO: Disable buttons when locationInPreparation is true
 
-  // 1. In the beginning, loads the server's up-to-date data (or AppState becomes active)
-  // 2. Application works locally
-  // 3. Sync the data back to the server in response to state changes (using useEffect)
-
   useEffect(() => {
-    // Get updates from server and sync the current value with it
     setIsClockedIn(isClockInButton);
   }, [isClockInButton]);
 
-  useEffect(() => {
-    // Get updates from server and sync the current value with it
-    console.log('triggered :');
-    setIsEnabled(enabled);
-  }, [enabled]);
-
   const auth = useAuth();
-
-  // useEffect(() => {
-  //   setIsClockInOutButtonPressed
-  //     (
-  //       (auth.usersDocument.status.type === 'clocked-out')
-  //         ? true
-  //         : false
-  //     )
-  // }, []);
 
   useDidUpdateEffect(() => {
     if (isLocationInPreperation === true) {
@@ -77,7 +56,6 @@ const ClockInOutButton = ({ enabled, isClockInButton }) => {
     setIsClockedIn(!isClockedIn);
     _getLocationAsync()
       .then(() => {
-        // setIsClockedIn(!isClockedIn);
         setIsLocationInPreparation(true);
       })
       .catch(error => {
@@ -91,8 +69,7 @@ const ClockInOutButton = ({ enabled, isClockInButton }) => {
         style={[styles.button, { backgroundColor: (isClockedIn) ? constantColor.logoutColor : constantColor.loginColor }]}
         onPress={handleOnPress}
         underlayColor={(isClockedIn) ? constantColor.logoutColorOpacity : constantColor.loginColorOpacity}
-        // disabled={!enabled || isLocationInPreperation} // (perhaps, loading indicator required later?)
-        disabled={!enabled2} // (perhaps, loading indicator required later?)
+        disabled={!enabled || isLocationInPreperation}
       >
         <Text style={styles.text}>{(isClockedIn) ? "clock out" : "clock in"}</Text>
       </TouchableHighlight>

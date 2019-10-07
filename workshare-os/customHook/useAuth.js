@@ -53,10 +53,6 @@ function useProvideAuth() {
     loadUserDocument();
   }, [usersStatus]);
 
-  // useDidUpdateEffect(() => {
-  //   console.log('usersDocument :', usersDocument);
-  // }, [usersDocument]);
-
   useDidUpdateEffect(() => {
     db.collection('users')
       .doc(usersStatus.documentId)

@@ -27,11 +27,9 @@ const ActionsScreen = () => {
       case 'break-start':
         return false;
       case 'break-end':
-        // return false;
         return true;
       default:
     }
-    // (lastState === 'break-end' || lastState === 'clocked-out' || lastState === 'clocked-in') ? true : false;
   })();
   const isClockInButton = (() => {
     switch (lastState) {
@@ -43,10 +41,8 @@ const ActionsScreen = () => {
         return false;
       case 'break-end':
         return false;
-        // return true;
       default:
     }
-    // (lastState === 'clocked-out') ? true : false;
   })();
   const breakButtonEnabled = (() => {
     switch (lastState) {
@@ -60,7 +56,6 @@ const ActionsScreen = () => {
         return true;
       default:
     }
-    // (lastState === 'clocked-in') ? true : false;
   })();
   const isOnBreak = (() => {
     switch (lastState) {
@@ -74,7 +69,6 @@ const ActionsScreen = () => {
         return false;
       default:
     }
-    // (lastState === 'clocked-in') ? true : false;
   })();
 
   return (

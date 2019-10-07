@@ -15,7 +15,6 @@ const BreakButton = ({ enabled, isOnBreakNow }) => {
   const [isLocationInPreperation, setIsLocationInPreparation] = useState(false);
 
   useEffect(() => {
-    // Get updates from server and sync the current value with it
     setIsOnBreak(isOnBreakNow);
   }, [isOnBreakNow]);
 
@@ -57,7 +56,6 @@ const BreakButton = ({ enabled, isOnBreakNow }) => {
     }
     _getLocationAsync()
       .then(() => {
-        // setIsOnBreak(!isOnBreak);
         setIsLocationInPreparation(true);
       })
       .catch(error => {
@@ -72,7 +70,7 @@ const BreakButton = ({ enabled, isOnBreakNow }) => {
         { backgroundColor: (isOnBreak) ? constantColor.breakColor : constantColor.lightGrayColor }]}
         onPress={handleBreakPress}
         underlayColor={(isOnBreak) ? constantColor.breakColorOpacity : constantColor.lightGrayColorOpacity}
-        disabled={!enabled}
+        disabled={!enabled || isLocationInPreperation}
       >
         <View style={styles.iconContainer}>
           <Ionicons name="ios-cafe" size={70} color="#fff" />

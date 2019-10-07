@@ -20,7 +20,6 @@ const SchedulesScreen = ({ navigation }) => {
       <ButtonCustom onPress={refresh} buttonText="refresh" />
       <NavigationEvents
         onWillFocus={payload => {
-          console.log("will focus", payload);
           auth.getAllMembersOfTheCompany();
         }}
       />
@@ -34,17 +33,6 @@ const SchedulesScreen = ({ navigation }) => {
           />}
         keyExtractor={item => item.userId.toString()}
       />
-      {/* <MembersStatus memberName='User Name - break' onPress={() => navigation.navigate('Schedule')} status='break' />
-      <MembersStatus memberName='User Name - available' onPress={() => navigation.navigate('Schedule')} status='available' />
-      <MembersStatus memberName='User Name - busy' onPress={() => navigation.navigate('Schedule')} status='busy' />
-      <MembersStatus memberName='User Name - notClockedIn' onPress={() => navigation.navigate('Schedule')} />
-      <MembersStatus memberName='User Name - clocked out' onPress={() => navigation.navigate('Schedule')} status='clockedOut' />
-      <MembersStatus memberName='User Name - leave' onPress={() => navigation.navigate('Schedule')} status='leave' />
-      <MembersStatus memberName='User Name - available' onPress={() => navigation.navigate('Schedule')} status='available' />
-      <MembersStatus memberName='User Name - available' onPress={() => navigation.navigate('Schedule')} status='available' />
-      <MembersStatus memberName='User Name - notClockedIn' onPress={() => navigation.navigate('Schedule')} />
-      <MembersStatus memberName='User Name - break' onPress={() => navigation.navigate('Schedule')} status='break' />
-      <MembersStatus memberName='User Name - notClockedIn' onPress={() => navigation.navigate('Schedule')} /> */}
     </ScrollView>
   );
 }
