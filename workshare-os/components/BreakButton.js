@@ -31,6 +31,7 @@ const BreakButton = ({ enabled, isOnBreakNow }) => {
         createdAt: timestamp,
         type: (isOnBreak) ? 'break-end' : 'break-start',
         userId: auth.user.uid,
+        orgId: auth.usersDocument.orgId,
       })
         .then((docRef) => {
           auth.updateUsersStatus(

@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, TouchableHighlight } from 'react-native';
+import { useAuth } from '../customHook/useAuth';
 import constantColor from '../constants/Colors';
 import { Ionicons } from '@expo/vector-icons';
 
 const LeaveButton = () => {
   const [isLeavePressed, setLeavePressed] = useState(false);
+  const [dailyWorkingHours, setDailyWorkingHours] = useState([]);
+
+  const auth = useAuth();
 
   const handleLeavePress = () => {
     setLeavePressed(!isLeavePressed);
+    auth.getDailyWorkingHoursToday(auth.usersDocument.userId);
+
+    // console.log('auth.getDailyWorkingHoursToday :', auth.getDailyWorkingHoursToday());
+    // console.log('auth.usersDocument.userId :', auth.usersDocument.userId);
+    console.log('dailyWorkingHours :', auth.workingHoursDocumentsToday);
   };
 
   return (

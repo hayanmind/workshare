@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
 import useDidUpdateEffect from './useDidUpdateEffect';
 import * as firebase from "firebase/app";
+import moment from "moment";
 import "firebase/auth";
 import 'firebase/firestore';
 
@@ -48,6 +49,11 @@ function useProvideAuth() {
   });
   const [usersDocument, setUserDocument] = useState(null);
   const [orgMembers, setOrgMembers] = useState([]);
+
+  const [workingHoursDocumentsToday, setWorkingHoursDocumentsToday] = useState([]);
+
+  const startOfDay = moment.utc().startOf('day').unix();
+  const endOfDay = moment.utc().endOf('day').unix();
 
   useDidUpdateEffect(() => {
     loadUserDocument();
@@ -213,6 +219,25 @@ function useProvideAuth() {
       })
   };
 
+  const getDailyWorkingHoursToday = (userIdProp) => {
+    console.log('startOfDay :', startOfDay);
+    console.log('endOfDay :', endOfDay);
+    db.collection('events')
+      .where('userId', '==', userIdProp)
+      .where('createdAt', '>=', startOfDay)
+      // .where('createdAt', '<=', endOfDay)
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          console.log('doc.data() :', doc.data());
+          setWorkingHoursDocumentsToday(prev => [...prev, doc.data()]);
+        });
+      })
+      .catch(error => {
+        console.log('error :', error);
+      })
+  };
+
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -242,5 +267,7 @@ function useProvideAuth() {
     setUserDoc,
     loadUserDocument,
     getAllMembersOfTheCompany,
+    getDailyWorkingHoursToday,
+    workingHoursDocumentsToday,
   };
 }

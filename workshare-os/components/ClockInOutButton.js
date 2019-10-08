@@ -30,6 +30,7 @@ const ClockInOutButton = ({ enabled, isClockInButton }) => {
         createdAt: timestamp,
         type: (isClockedIn) ? 'clocked-in' : 'clocked-out',
         userId: auth.user.uid,
+        orgId: auth.usersDocument.orgId,
       })
         .then((docRef) => {
           auth.updateUsersStatus(

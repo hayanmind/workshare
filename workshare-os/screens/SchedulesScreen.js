@@ -12,6 +12,7 @@ const SchedulesScreen = ({ navigation }) => {
 
   const refresh = () => {
     auth.getAllMembersOfTheCompany();
+    // auth.getAllMemberStatisticsFromToday();
   }
 
   return (
