@@ -5,13 +5,14 @@ import { useAuth } from '../customHook/useAuth';
 import constantColor from '../constants/Colors';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
+import moment from "moment";
 import { Ionicons } from '@expo/vector-icons';
 
 const BreakButton = ({ enabled, isOnBreakNow }) => {
   const [isOnBreak, setIsOnBreak] = useState(false);
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
-  const [timestamp, setTimestamp] = useState(0);
+  // const [timestamp, setTimestamp] = useState(0);
   const [isLocationInPreperation, setIsLocationInPreparation] = useState(false);
 
   useEffect(() => {
@@ -19,6 +20,8 @@ const BreakButton = ({ enabled, isOnBreakNow }) => {
   }, [isOnBreakNow]);
 
   const auth = useAuth();
+
+  const timestamp = moment.utc().unix();
 
   useDidUpdateEffect(() => {
     if (isLocationInPreperation === true) {
@@ -47,7 +50,7 @@ const BreakButton = ({ enabled, isOnBreakNow }) => {
     const currentLocation = await Location.getCurrentPositionAsync({});
     setLatitude(currentLocation.coords.latitude);
     setLongitude(currentLocation.coords.longitude);
-    setTimestamp(currentLocation.timestamp);
+    // setTimestamp(currentLocation.timestamp);
   };
 
   const handleBreakPress = async () => {

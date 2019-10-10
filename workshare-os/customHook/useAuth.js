@@ -52,7 +52,7 @@ function useProvideAuth() {
 
   const [workingHoursDocumentsToday, setWorkingHoursDocumentsToday] = useState([]);
 
-  const startOfDay = moment.utc().startOf('day').unix();
+  const startOfLocalWeek = moment().startOf('week').unix();
   const endOfDay = moment.utc().endOf('day').unix();
 
   useDidUpdateEffect(() => {
@@ -219,17 +219,14 @@ function useProvideAuth() {
       })
   };
 
-  const getDailyWorkingHoursToday = (userIdProp) => {
-    console.log('startOfDay :', startOfDay);
-    console.log('endOfDay :', endOfDay);
+  const loadWorkingHoursWeekly = (userIdProp) => {
+    setWorkingHoursDocumentsToday([]);
     db.collection('events')
       .where('userId', '==', userIdProp)
-      .where('createdAt', '>=', startOfDay)
-      // .where('createdAt', '<=', endOfDay)
+      .where('createdAt', '>=', startOfLocalWeek)
       .get()
       .then(snapshot => {
         snapshot.forEach(doc => {
-          console.log('doc.data() :', doc.data());
           setWorkingHoursDocumentsToday(prev => [...prev, doc.data()]);
         });
       })
@@ -267,7 +264,7 @@ function useProvideAuth() {
     setUserDoc,
     loadUserDocument,
     getAllMembersOfTheCompany,
-    getDailyWorkingHoursToday,
+    loadWorkingHoursWeekly,
     workingHoursDocumentsToday,
   };
 }

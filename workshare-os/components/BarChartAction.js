@@ -1,12 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View, StyleSheet, TouchableHighlight } from 'react-native';
+import moment from "moment";
 import constantColor from '../constants/Colors';
 import { AntDesign } from '@expo/vector-icons';
 
 const BarChartAction = () => {
 
-  const handleBarChartPress = () => {
+  const [fakeData, setFakeData] = useState(
+    [
+      { createdAt: 2, type: 'clocked-out' },
+      { createdAt: 6, type: 'clocked-out' },
+      { createdAt: 5, type: 'clocked-in' },
+      { createdAt: 3, type: 'clocked-in' },
+      { createdAt: 4, type: 'clocked-out' },
+      { createdAt: 1, type: 'clocked-in' },
+    ]
+  );
 
+// lade alle docs mit gleicher user id
+// const set day start
+// sortiere all docs nach Zeitstempel
+// for each element in the array if first ci subtract second from first, push 'green', 'clockin',
+// selbe für break-end  
+// wenn letzte element nicht type: clocked out hat setzte timestamp
+
+  const startOfDay = moment.utc().startOf('day').unix();
+  const endOfDay = moment.utc().endOf('day').unix();
+  const twentyFourHours = (endOfDay - startOfDay) / (60 * 60)
+
+  const sort = (data, key) => {
+    return data.sort(function (a, b) {
+      const x = a[key];
+      const y = b[key];
+      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+  }
+
+
+  const handleBarChartPress = () => {
+    console.log('startOfDay :', startOfDay);
+    console.log('endOfDay :', endOfDay);
+    console.log('twentFourHours :', twentyFourHours);
+    console.log('fakeData :', fakeData);
+    // console.log('fakeDataSorter :', sort(fakeData, 'createdAt'));
   };
 
   return (

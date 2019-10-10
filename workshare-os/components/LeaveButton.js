@@ -6,17 +6,15 @@ import { Ionicons } from '@expo/vector-icons';
 
 const LeaveButton = () => {
   const [isLeavePressed, setLeavePressed] = useState(false);
-  const [dailyWorkingHours, setDailyWorkingHours] = useState([]);
 
   const auth = useAuth();
+  const currentUserId = auth.usersDocument.userId
 
   const handleLeavePress = () => {
     setLeavePressed(!isLeavePressed);
-    auth.getDailyWorkingHoursToday(auth.usersDocument.userId);
+    auth.loadWorkingHoursWeekly(currentUserId);
 
-    // console.log('auth.getDailyWorkingHoursToday :', auth.getDailyWorkingHoursToday());
-    // console.log('auth.usersDocument.userId :', auth.usersDocument.userId);
-    console.log('dailyWorkingHours :', auth.workingHoursDocumentsToday);
+    console.log('weeklyWorkingHours :', auth.workingHoursDocumentsToday);
   };
 
   return (
