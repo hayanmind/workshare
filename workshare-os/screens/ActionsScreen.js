@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Platform,
   StyleSheet,
@@ -7,7 +7,7 @@ import {
   StatusBar,
 } from 'react-native';
 import { useAuth } from '../customHook/useAuth';
-
+import { NavigationEvents } from "react-navigation";
 import ClockInOutButton from '../components/ClockInOutButton';
 import BreakButton from '../components/BreakButton';
 import LeaveButton from '../components/LeaveButton';
@@ -15,6 +15,12 @@ import constantColor from '../constants/Colors';
 import BarChartAction from '../components/BarChartAction';
 
 const ActionsScreen = () => {
+
+  // useEffect(() => {
+  //   calculateWeeklyHours();
+  // }, []);
+
+
 
   const auth = useAuth();
   const lastState = (auth.usersDocument.status.type);
@@ -71,9 +77,24 @@ const ActionsScreen = () => {
     }
   })();
 
+  // const calculateWeeklyHours = () => {
+  //   const sekunden = 0;
+  //   const arrayOfEvents = auth.workingHoursDocumentsToday;
+  //   for (let index = 0; index < arrayOfEvents.length; index++) {
+  //     console.log('array[index].type :', arrayOfEvents[index].type);
+  //   }
+  // };
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
+      <NavigationEvents
+        onWillFocus={ () => {
+          auth.loadWorkingHoursWeekly(auth.usersDocument.userId);
+          // console.log('loading :');
+          // calculateWeeklyHours();
+        }}
+      />
       <View style={styles.clockInButtonContainer}>
         <ClockInOutButton enabled={clockInOutButtonEnabled} isClockInButton={!isClockInButton} />
       </View>

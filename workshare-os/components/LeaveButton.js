@@ -8,13 +8,13 @@ const LeaveButton = () => {
   const [isLeavePressed, setLeavePressed] = useState(false);
 
   const auth = useAuth();
-  const currentUserId = auth.usersDocument.userId
+  const currentUserId = auth.usersDocument.userId;
 
   const handleLeavePress = () => {
     setLeavePressed(!isLeavePressed);
-    auth.loadWorkingHoursWeekly(currentUserId);
+    // auth.loadWorkingHoursWeekly(currentUserId);
 
-    console.log('weeklyWorkingHours :', auth.workingHoursDocumentsToday);
+    // console.log('weeklyWorkingHours :', auth.workingHoursDocumentsToday);
   };
 
   return (

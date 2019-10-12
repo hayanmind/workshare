@@ -229,6 +229,7 @@ function useProvideAuth() {
         snapshot.forEach(doc => {
           setWorkingHoursDocumentsToday(prev => [...prev, doc.data()]);
         });
+        console.log('load work week :');
       })
       .catch(error => {
         console.log('error :', error);
